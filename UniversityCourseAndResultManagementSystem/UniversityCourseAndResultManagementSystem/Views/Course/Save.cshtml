@@ -1,0 +1,75 @@
+﻿@{
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Save</title>
+</head>
+<body>
+<h2>@ViewBag.Mgs</h2>
+<div>
+    <form id="saveCourseForm" method="POST">
+        <table>
+            <tr>
+                <td><label for="Code">Code</label></td>
+                <td><input type="text" class="form-control" id="Code" name="Code" placeholder="Enter Code"></td>
+
+            </tr>
+
+            <tr>
+                <td><label for="Name">Name</label></td>
+                <td><input type="text" class="form-control" id="Name" name="Name" placeholder="Enter Name"></td>
+
+            </tr>
+            <tr>
+                <td><label for="Credit">Credit</label></td>
+                <td><input type="text" class="form-control" id="Credit" name="Credit" placeholder="Enter Credit"></td>
+
+            </tr>
+            <tr>
+                <td><label for="Description">Description</label></td>
+                <td><textarea id="Description" name="Description" placeholder="Write Description"></textarea></td>
+
+            </tr>
+            <tr>
+                <td><label for="DepartmentId">Department</label></td>
+                <td>
+                    <select id="DepartmentId" name="DepartmentId">
+                        <option value="">Select Department....</option>
+                        @foreach (var dept in ViewBag.Departments)
+                        {
+                            <option value="@dept.DepartmentId">@dept.Name</option>
+                        }
+                    </select>
+
+                </td>
+
+            </tr>
+            <tr>
+                <td><label for="SemesterId">Semester</label></td>
+                <td>
+                    <select id="SemesterId" name="SemesterId">
+                        <option value="">Select Semester....</option>
+                        @foreach (var sem in ViewBag.Semesters)
+                        {
+                            <option value="@sem.SemesterId">@sem.Name</option>
+                        }
+                    </select>
+                </td>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td><button type="submit" class="btn btn-default">Save</button></td>
+
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

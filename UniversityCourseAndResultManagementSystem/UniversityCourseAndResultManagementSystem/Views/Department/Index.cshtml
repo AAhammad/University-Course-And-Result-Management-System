@@ -1,0 +1,51 @@
+﻿
+@{
+   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <hr />
+        <h2>View All Department</h2>
+
+        <hr />
+        <p>
+            @*@Html.ActionLink("Save Department", "Save")*@
+        </p>
+        
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Code</th>
+                        <th>Name</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var dept in Model)
+                    {
+                        <tr>
+                            <td>@dept.Code</td>
+                            <td>@dept.Name</td>
+                           
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            </div>
+
+
+
+       
+
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+﻿
+@{
+   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Save</title>
+</head>
+<body>
+    <div>
+        <h2>@ViewBag.Mgs</h2>
+        <form id="saveDeptForm" method="POST">
+            <table>                        
+                <tbody>
+                    <tr>
+                        <td><label for="Code">Code</label></td>
+                        <td><input type="text" id="Code" name="Code" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="Name">Name</label></td>
+                        <td><input type="text" id="Name" name="Name" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="Save"/></td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</body>
+</html>
