@@ -166,6 +166,7 @@
     <Compile Include="Gateway\CourseGateway.cs" />
     <Compile Include="Gateway\DatabaseGateway.cs" />
     <Compile Include="Gateway\DepartmentGateway.cs" />
+    <Compile Include="Gateway\DesignationGateway.cs" />
     <Compile Include="Gateway\SemesterGateway.cs" />
     <Compile Include="Gateway\TeacherGateway.cs" />
     <Compile Include="Global.asax.cs">
@@ -173,11 +174,13 @@
     </Compile>
     <Compile Include="Manager\CourseManager.cs" />
     <Compile Include="Manager\DepartmentManager.cs" />
+    <Compile Include="Manager\DesignationManager.cs" />
     <Compile Include="Manager\SemesterManager.cs" />
     <Compile Include="Manager\TeacherManager.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\Designation.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Semester.cs" />
     <Compile Include="Models\Teacher.cs" />
@@ -291,6 +294,7 @@
     <Content Include="Views\Department\Index.cshtml" />
     <Content Include="Views\Department\Save.cshtml" />
     <Content Include="Views\Teacher\Index.cshtml" />
+    <Content Include="Views\Teacher\Save.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

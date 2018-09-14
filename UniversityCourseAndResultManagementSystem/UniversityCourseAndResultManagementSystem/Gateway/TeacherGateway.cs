@@ -10,7 +10,7 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
 {
     public class TeacherGateway:DatabaseGateway
     {
-        public IEnumerable<Teacher> GetAll()
+        public List<Teacher> GetAllTeachers()
         {
            
                 
@@ -30,8 +30,8 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
                             Contact = reader["Contact"].ToString(),
                             DesignationId = Convert.ToInt32(reader["DesignationId"].ToString()),
                             DepartmentId = Convert.ToInt32(reader["DepartmentId"].ToString()),
-                            CreditTobeTaken = Convert.ToDouble(reader["CreditToBeTaken"].ToString()),
-                            CreditTaken = Convert.ToDouble(reader["CreditTaken"].ToString())
+                            CreditTobeTaken =  Convert.ToDecimal((reader["CreditToBeTaken"].ToString())),
+                            CreditTaken = Convert.ToDecimal((reader["CreditTaken"].ToString()))
 
 
                         };
@@ -42,10 +42,7 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
                     
                     return teachers;
                 
-               
-                
-                    
-                
+         
             
         }
 
@@ -70,7 +67,7 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
                         Contact = reader["Contact"].ToString(),
                         DesignationId = Convert.ToInt32(reader["DesignationId"].ToString()),
                         DepartmentId = Convert.ToInt32(reader["DepartmentId"].ToString()),
-                        CreditTobeTaken = Convert.ToDouble(reader["CreditToBeTaken"].ToString())
+                        CreditTobeTaken = Convert.ToDecimal((reader["CreditToBeTaken"].ToString()))
 
                     };
 
@@ -80,17 +77,15 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
                 ConnectionObj.Close();
                 CommandObj.Dispose();
                 return teacher;
-            
-           
-            
+          
             
         }
 
         public int Insert(Teacher teacher)
         {
-            
-                CommandObj.CommandText = "spAddTeacher";
-                CommandObj.CommandType = CommandType.StoredProcedure;
+
+            string query = "INSERT INTO Teacher_tbl(Name,Address,Email,Contact,DesignationId,DepartmentId,CreditToBeTaken,CreditTaken) VALUES(@Name,@Address,@Email,@Contact, @DesignationId,@DepartmentId,@CreditTobeTaken,@RemainingCredit)";
+                CommandObj.CommandText = query;
                 CommandObj.Parameters.Clear();
                 CommandObj.Parameters.AddWithValue("@Name", teacher.Name);
                 CommandObj.Parameters.AddWithValue("@Address", teacher.Address);
@@ -101,28 +96,18 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
                 CommandObj.Parameters.AddWithValue("@CreditTobeTaken", teacher.CreditTobeTaken);
                 CommandObj.Parameters.AddWithValue("@RemainingCredit", 0);
                 ConnectionObj.Open();
-
+                int rowAffact=CommandObj.ExecuteNonQuery();
                 ConnectionObj.Close();
                 CommandObj.Dispose();
-                return CommandObj.ExecuteNonQuery();
+                 return rowAffact;
 
-            
-            
 
-            
-            
+
         }
 
 
 
-        public int UpdateTeacherInformation()
-        {
-            ConnectionObj.Open();
-            CommandObj.CommandText = "UPDATE Teacher_tbl SET CreditTaken=0";
-            int i = CommandObj.ExecuteNonQuery();
-            ConnectionObj.Close();
-            return i;
-        }
+       
                 
     }
 }
