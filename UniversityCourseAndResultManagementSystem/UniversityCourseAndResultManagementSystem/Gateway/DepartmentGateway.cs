@@ -34,10 +34,6 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
             return departments;
 
 
-
-
-
-
         }
 
 

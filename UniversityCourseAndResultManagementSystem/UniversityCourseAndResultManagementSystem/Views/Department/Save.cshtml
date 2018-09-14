@@ -1,4 +1,4 @@
-﻿
+﻿@model UniversityCourseAndResultManagementSystem.Models.Department
 @{
    
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -10,28 +10,45 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Save</title>
+    <link href="~/Content/Style.css" rel="stylesheet" />
 </head>
 <body>
-    <div>
-        <h2>@ViewBag.Mgs</h2>
-        <form id="saveDeptForm" method="POST">
-            <table>                        
-                <tbody>
-                    <tr>
-                        <td><label for="Code">Code</label></td>
-                        <td><input type="text" id="Code" name="Code" /></td>
-                    </tr>
-                    <tr>
-                        <td><label for="Name">Name</label></td>
-                        <td><input type="text" id="Name" name="Name" /></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input type="submit" value="Save"/></td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
-    </div>
+    <hr />
+    @using (Html.BeginForm())
+    {
+        if (ViewBag.Mgs != null)
+        {
+            <p style="font-size:30px; color:blue">@ViewBag.Mgs</p>
+        }
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true)
+            <div class="form-group">
+                @Html.LabelFor(model => model.Code, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Code)
+                    @Html.ValidationMessageFor(model => model.Code)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+
+    }
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 </body>
 </html>

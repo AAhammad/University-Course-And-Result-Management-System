@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Save";
+    ViewBag.Title = "Save Teacher";
 }
 
 <div>
@@ -58,6 +58,47 @@
         <button type="submit" class="btn btn-default">Save</button>
 
     </form>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#saveTeacherForm").validate({
+                rules: {
+                    Name: "required",
+                    Email: {
+                        required: true,
+                        email: true
+                    },
+                    Contact: "required",
+                    CreditTobeTaken:
+                    {
+                        required: true,
+                        number: true,
+                        range: [0, 500]
+                    },
+                    Address: "required",
+                    DesignationId: "required",
+                    DepartmentId: "required"
 
+                },
+                messages: {
+                    Name: "Please enter the  Name",
+                    Email: {
+                        required: "Please email address is required",
+                        email: "Please enter a correct email address"
+                    },
+                    Contact: "Please enter the  contact",
+                    CreditTobeTaken: {
+                        required: "Credit is required!",
+                        number: "Please enter numeric figure only!",
+                        range: "Enter a positive number"
+                    },
+                    Address: "Address is required!",
+                    DesignationId: "Designation is required!",
+                    DepartmentId: "Please select department"
+                }
+            });
+        });
+    </script>
     
 </div>
