@@ -21,7 +21,7 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
             {
                 Semester semester = new Semester
                 {
-                    SemesterId = Convert.ToInt32(reader["ID"].ToString()),
+                    SemesterId = Convert.ToInt32(reader["Id"].ToString()),
                     Name = reader["Title"].ToString(),
 
                 };

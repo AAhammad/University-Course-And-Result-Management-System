@@ -106,7 +106,14 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
         }
 
 
-
+        public int UpdateTeacherInformation()
+        {
+            ConnectionObj.Open();
+            CommandObj.CommandText = "UPDATE Teacher_tbl SET CreditTaken=0";
+            int i = CommandObj.ExecuteNonQuery();
+            ConnectionObj.Close();
+            return i;
+        }
        
                 
     }

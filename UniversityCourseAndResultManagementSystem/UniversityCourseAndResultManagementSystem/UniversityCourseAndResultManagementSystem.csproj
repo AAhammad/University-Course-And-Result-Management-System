@@ -161,10 +161,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CourseAssignToTeacherController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
+    <Compile Include="Gateway\CourseAssignToTeacherGateway.cs" />
     <Compile Include="Gateway\CourseGateway.cs" />
     <Compile Include="Gateway\DatabaseGateway.cs" />
     <Compile Include="Gateway\DepartmentGateway.cs" />
@@ -174,6 +176,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Manager\CourseAssignToTeacherManager.cs" />
     <Compile Include="Manager\CourseManager.cs" />
     <Compile Include="Manager\DepartmentManager.cs" />
     <Compile Include="Manager\DesignationManager.cs" />
@@ -182,6 +185,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\CourseAssignToTeacher.cs" />
+    <Compile Include="Models\CourseViewModel.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Designation.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -654,6 +658,8 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Scripts\popper.min.js.map" />
     <Content Include="Scripts\popper.js.map" />
+    <Content Include="Views\CourseAssignToTeacher\Index.cshtml" />
+    <Content Include="Views\CourseAssignToTeacher\AssignCourseToTeacher.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

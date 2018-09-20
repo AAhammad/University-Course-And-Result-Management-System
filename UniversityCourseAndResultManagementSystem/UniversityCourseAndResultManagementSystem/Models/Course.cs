@@ -10,6 +10,7 @@ namespace UniversityCourseAndResultManagementSystem.Models
     public class Course
     {
         public int Id { get; set; }
+
         [Required(ErrorMessage = "Please enter a valid course code!")]
         [StringLength(100, MinimumLength = 5, ErrorMessage = "Code must be contains at least 5 characters!")]
         public string Code { get; set; }
@@ -18,6 +19,7 @@ namespace UniversityCourseAndResultManagementSystem.Models
         [Required(ErrorMessage = "Please enter a valid Course credit!")]
         [Range(0.5, 5.00, ErrorMessage = "Credit must be betwwen 0.5 and 5.00")]
         public decimal Credit { get; set; }
+
         [Required(ErrorMessage = "Please write course description!")]
         public string Description { get; set; }
         [DisplayName("Department")]

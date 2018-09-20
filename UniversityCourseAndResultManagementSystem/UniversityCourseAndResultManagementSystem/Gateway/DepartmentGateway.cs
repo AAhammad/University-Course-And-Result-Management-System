@@ -21,7 +21,7 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
             {
                 Department department = new Department
                 {
-                    DepartmentId = Convert.ToInt32(reader["ID"].ToString()),
+                    DepartmentId = Convert.ToInt32(reader["Id"].ToString()),
                     Name = reader["Name"].ToString(),
                     Code = reader["Code"].ToString()
                 };
