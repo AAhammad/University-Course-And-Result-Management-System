@@ -12,11 +12,12 @@
     <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
 <body>
-    @if (ViewBag.Message != null)
-    {
-        <p style="font-size:20px;color:olivedrab">@ViewBag.Message</p>
+    <h2 style="font-size: 30px; color: #5f223b">Save Course</h2>
+@if (ViewBag.Message != null)
+{
+    <p style="font-size: 20px; color: olivedrab">@ViewBag.Message</p>
 
-    }
+}
 <div>
     <form id="saveCourseForm" method="POST">
         <table>
@@ -77,48 +78,48 @@
     </form>
 </div>
 
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/Scripts/jquery.validate.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
-    <script>
-        $(document).ready(function () {
-            $("#saveCourseForm").validate({
-                rules: {
-                    Code: {
-                        required: true,
-                        minlength: 5
-                    },
-                    Name: "required",
-                    Description: "required",
-                    Credit: {
-                        required: true,
-                        number: true,
-                        range: [0.5, 5.00]
-
-                    },
-
-                    DepartmentId: "required",
-                    SemesterId: "required"
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#saveCourseForm").validate({
+            rules: {
+                Code: {
+                    required: true,
+                    minlength: 5
+                },
+                Name: "required",
+                Description: "required",
+                Credit: {
+                    required: true,
+                    number: true,
+                    range: [0.5, 5.00]
 
                 },
-                messages: {
-                    Code: {
-                        required: "Please enter a valid Course Code!",
-                        minlength: "Code must be at least 5 charecter! !"
-                    },
 
-                    Name: "Please enter the valid Course Name!",
-                    Description: "Write something about course!",
-                    Credit: {
-                        required: "Credit is required!",
-                        number: "Please! Enter numeric figure only!",
-                        range: "Credit must be beween 0.5 and 5.00"
-                    },
-                    DepartmentId: "Please select related department!",
-                    SemesterId: "Please select related semester!"
-                }
-            });
+                DepartmentId: "required",
+                SemesterId: "required"
+
+            },
+            messages: {
+                Code: {
+                    required: "Please enter a valid Course Code!",
+                    minlength: "Code must be at least 5 charecter! !"
+                },
+
+                Name: "Please enter the valid Course Name!",
+                Description: "Write something about course!",
+                Credit: {
+                    required: "Credit is required!",
+                    number: "Please! Enter numeric figure only!",
+                    range: "Credit must be beween 0.5 and 5.00"
+                },
+                DepartmentId: "Please select related department!",
+                SemesterId: "Please select related semester!"
+            }
         });
-    </script>
+    });
+</script>
 </body>
 </html>

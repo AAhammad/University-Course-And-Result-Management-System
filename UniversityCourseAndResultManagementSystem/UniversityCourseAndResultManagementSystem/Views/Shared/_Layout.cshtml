@@ -6,7 +6,7 @@
     <title>@ViewBag.Title  University Course And Result Management System</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    @*<link href="~/Content/PagedList.css" rel="stylesheet" />
    
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
@@ -14,7 +14,7 @@
     <link href="~/Content/Style.css" rel="stylesheet" />
     <link href="~/Content/mobiscroll-2.9.5.full.min.css" rel="stylesheet" />
     <link href="~/Content/css/style.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />*@
     @*<link href="~/Content/PagedList.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-2.2.0.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
@@ -25,45 +25,61 @@
     <link href="~/Content/Style.css" rel="stylesheet" />*@
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li class="active">@Html.ActionLink("Home", "Index", "Home") <span class="sr-only">(current)</span></li>
+    <nav class="navbar navbar-expand-lg navbar-light font-weight-bold " style="background-color: #d6c6c1; ">
+        @*<a class=" navbar-brand" href="#">
+            Navbar</a>*@
+        <button class="navbar-brand btn btn-outline-light" type="button">University Management</button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                @*<li class="nav-item active">
+                    <br/>
+                </li>
+                <li class="nav-item">
+                    
+                </li>*@
+
+                <li class="nav-item dropdown btn-outline-info shadow">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Department
+                    </a>
+                    <div class="dropdown-menu btn-outline-light" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item alert-info " href="@Url.Action("Save", "Department")">Save Department</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item alert-info" href="@Url.Action("Index", "Department")">View All Departments</a>
 
 
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Department <span class="caret"></span></a>
-                        <ul class="dropdown-menu ">
-                            <li>@Html.ActionLink("Save Department", "Save", "Department")</li>
-                            <li role="separator" class="divider"></li>
-                            <li>@Html.ActionLink("View All Departments", "Index", "Department")</li>
-                        </ul>
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Course <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Save Course", "Save", "Course")</li>
-                            <li role="separator" class="divider"></li>
-                            
-
-                        </ul>
-                    </li>
-
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Teacher <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Save Teacher", "Save", "Teacher")</li>
-                            <li role="separator" class="divider"></li>
-                            <li>@Html.ActionLink("Assign Course To Teacher", "AssignCourseToTeacher", "CourseAssignToTeacher")</li>
-                            
-                        </ul>
-                    </li>
+                    </div>
+                </li>
 
 
-                </ul>
-            </div>
+                <li class="nav-item dropdown btn-outline-info shadow">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Course
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item alert-info" href="@Url.Action("Save", "Course")">Save Course</a>
+                        <div class="dropdown-divider"></div>
+                        @*<a class="dropdown-item" href="@Url.Action("Index", "Department")">View All Departments</a>*@
+
+
+                    </div>
+                </li>
+                <li class="nav-item dropdown btn-outline-info shadow ">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Teacher
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item alert-info" href="@Url.Action("Save", "Teacher")">Save Teacher</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item alert-info" href="@Url.Action("AssignCourseToTeacher", "CourseAssignToTeacher")">Assign Course To Teacher</a>
+
+
+                    </div>
+                </li>
+            </ul>
         </div>
     </nav>
 
@@ -81,6 +97,8 @@
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Content/Scripts/bootstrap-hover-dropdown.min.js"></script>
     <script src="~/Scripts/mobiscroll-2.9.5.full.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+ 
 
 
     <script>

@@ -3,10 +3,10 @@
     ViewBag.Title = "AssignCourseToTeacher";
 }
 
-
+<link href="~/Content/Style.css" rel="stylesheet" />
 <div>
     <hr/>
-    <h2 style="font-size:30px;color:blue">Course Assign To Teacher</h2>
+    <h2 style="font-size: 30px; color: #5f223b">Course Assign To Teacher</h2>
     <hr />
     @if (ViewBag.Message != null)
     {
@@ -88,7 +88,7 @@
             <tr>
                 <td></td>
                 <td>
-                    <input type="submit" value="Assign" class="btn btn-default" id="submitButton" />
+                    <input type="submit" value="Assign" class="btn btn-outline-primary" id="submitButton" />
                 </td>
             </tr>
         </table>
@@ -96,8 +96,9 @@
 </div>
 
 @section Scripts {
-    <script src="~/Scripts/jquery-2.2.0.js"></script>
-    <script src="~/Scripts/jquery.validate.js"></script>
+   <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
     <script>
     $(document).ready(function () {

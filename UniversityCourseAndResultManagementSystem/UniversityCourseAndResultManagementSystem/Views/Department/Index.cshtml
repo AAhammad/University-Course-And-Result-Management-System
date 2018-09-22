@@ -13,33 +13,35 @@
 </head>
 <body>
     <div>
-        <hr />
-        <h2>View All Department</h2>
+        <hr/>
+       
+        <h2 style="font-size: 30px; color: #5f223b">View All Department</h2>
 
         <hr />
         <p>
             @*@Html.ActionLink("Save Department", "Save")*@
         </p>
         
-            <table border="1">
-                <thead>
+        <table class="tabel table-bordered shadow " width="40%" style="background-color: #d3d4d5; text-align: center; ">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var dept in Model)
+                {
                     <tr>
-                        <th>Code</th>
-                        <th>Name</th>
-                        
+                        <td>@dept.Code</td>
+                        <td>@dept.Name</td>
+
                     </tr>
-                </thead>
-                <tbody>
-                    @foreach (var dept in Model)
-                    {
-                        <tr>
-                            <td>@dept.Code</td>
-                            <td>@dept.Name</td>
-                           
-                        </tr>
-                    }
-                </tbody>
-            </table>
+                }
+            </tbody>
+        </table>
+
             </div>
 
 
