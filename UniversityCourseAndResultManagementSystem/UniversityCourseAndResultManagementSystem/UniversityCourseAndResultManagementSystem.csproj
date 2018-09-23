@@ -165,6 +165,7 @@
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\ViewCourseStaticsController.cs" />
     <Compile Include="Gateway\CourseAssignToTeacherGateway.cs" />
@@ -173,6 +174,7 @@
     <Compile Include="Gateway\DepartmentGateway.cs" />
     <Compile Include="Gateway\DesignationGateway.cs" />
     <Compile Include="Gateway\SemesterGateway.cs" />
+    <Compile Include="Gateway\StudentGateway.cs" />
     <Compile Include="Gateway\TeacherGateway.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -182,6 +184,7 @@
     <Compile Include="Manager\DepartmentManager.cs" />
     <Compile Include="Manager\DesignationManager.cs" />
     <Compile Include="Manager\SemesterManager.cs" />
+    <Compile Include="Manager\StudentManager.cs" />
     <Compile Include="Manager\TeacherManager.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ClassRoom.cs" />
@@ -671,6 +674,8 @@
     <Content Include="Views\CourseAssignToTeacher\Index.cshtml" />
     <Content Include="Views\CourseAssignToTeacher\AssignCourseToTeacher.cshtml" />
     <Content Include="Views\ViewCourseStatics\ShowCourseStatics.cshtml" />
+    <Content Include="Views\Student\Index.cshtml" />
+    <Content Include="Views\Student\Save.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

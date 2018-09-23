@@ -17,7 +17,7 @@
 <hr/>
     <h2 style="font-size: 30px; color: #5f223b">Save Department</h2>
 <hr/>
-@using (Html.BeginForm())
+@using (Html.BeginForm("Save", "Department", FormMethod.Post, new { @class = "alert-info" }))
 {
     if (ViewBag.Mgs != null)
     {
@@ -28,21 +28,21 @@
     <div class="form-horizontal">
 
         @Html.ValidationSummary(true)
-        <div class="form-group">
+        <div class="form-group ">
             @Html.LabelFor(model => model.Code, new {@class = "control-label col-md-2"})
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.Code)
                 @Html.ValidationMessageFor(model => model.Code)
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group ">
             @Html.LabelFor(model => model.Name, new {@class = "control-label col-md-2"})
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.Name)
                 @Html.ValidationMessageFor(model => model.Name)
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group ">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-outline-primary"/>
             </div>
@@ -53,5 +53,6 @@
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
 </body>
 </html>

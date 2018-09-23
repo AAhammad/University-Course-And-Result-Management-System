@@ -12,30 +12,30 @@
         <p style="font-size:20px;color:olivedrab">@ViewBag.Message</p>
 
     }
-    <form id="saveTeacherForm" method="POST">
+    <form id="saveTeacherForm" method="POST" class="alert-info ">
 
-        <div class="form-group">
-            <label for="Name">Name</label>
+        <div class="form-group alert-dark" style="width: 35%;">
+            <label for="Name" class="font-weight-bold">Name</label>
             <input type="text" class="form-control" id="Name" name="Name" placeholder="Enter Name">
             @Html.ValidationMessage("Name")
         </div>
         <div class="form-group">
-            <label for="Address">Address</label>
+            <label for="Address" class="font-weight-bold">Address</label>
             <textarea type="text" class="form-control" id="Address" name="Address" placeholder="Enter Address"></textarea>
             @Html.ValidationMessage("Address")
         </div>
-        <div class="form-group">
-            <label for="Email">Email</label>
+        <div class="form-group alert-dark" style="width: 35%;">
+            <label for="Email" class="font-weight-bold">Email</label>
             <input class="form-control" id="Email" name="Email" placeholder="Enter Email">
             @Html.ValidationMessage("Email")
         </div>
         <div class="form-group">
-            <label for="Contact">Contact No.</label>
+            <label for="Contact" class="font-weight-bold">Contact No.</label>
             <input class="form-control" id="Contact" name="Contact" placeholder="Enter Contact">
             @Html.ValidationMessage("Contact")
         </div>
-        <div class="form-group">
-            <label for="DesignationId">Designation</label>
+        <div class="form-group alert-dark" style="width: 35%;">
+            <label for="DesignationId" class="font-weight-bold">Designation</label>
             <select id="DesignationId" name="DesignationId">
                 <option value="">Select Designation....</option>
                 @foreach (var designation in ViewBag.Designations)
@@ -45,8 +45,8 @@
             </select>
             @Html.ValidationMessage("DesignationId")
         </div>
-        <div class="form-group">
-            <label for="DepartmentId">Department</label>
+        <div class="form-group" style="width: 35%;">
+            <label for="DepartmentId" class="font-weight-bold">Department</label>
             <select id="DepartmentId" name="DepartmentId">
                 <option value="">Select Department....</option>
                 @foreach (var dept in ViewBag.Departments)
@@ -56,8 +56,8 @@
             </select>
             @Html.ValidationMessage("DepartmentId")
         </div>
-        <div class="form-group">
-            <label for="CreditTobeTaken">Credit To be Taken</label>
+        <div class="form-group alert-dark" style="width: 35%;">
+            <label for="CreditTobeTaken" class="font-weight-bold">Credit To be Taken</label>
             <input class="form-control" id="CreditTobeTaken" name="CreditTobeTaken" placeholder="Enter CreditTobeTaken">
             @Html.ValidationMessage("CreditTobeTaken")
         </div>
