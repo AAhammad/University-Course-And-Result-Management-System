@@ -144,7 +144,7 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
         public List<CourseViewModel> GetCourseViewModels()
         {
 
-            string query = "SELECT d.Id as DepartmentId,COALESCE(c.Code,'Not Assigned yet') AS Code,COALESCE(c.Name,'Not Assigned yet') AS Name,COALESCE(s.Name,'Not Assigned yet') as Semester,COALESCE(t.Name,'Not Assigned yet')  as Teacher FROM  Departments_tbl d  LEFT OUTER JOIN Course_tbl  c  ON d.Id=c.DepartmentId LEFT OUTER JOIN  Semester_tbl s ON c.SemesterId=s.Id  LEFT OUTER JOIN CourseAssignToTeacher_tbl Ct  ON (c.Id=Ct.CourseId AND Ct.IsActive=1) LEFT OUTER JOIN Teacher_tbl t ON t.Id=Ct.TeacherId ORDER BY c.Code";
+            string query = "SELECT d.Id as DepartmentId,COALESCE(c.Code,'Not Assigned yet') AS Code,COALESCE(c.Name,'Not Assigned yet') AS Name,COALESCE(s.Title,'Not Assigned yet') as Semester,COALESCE(t.Name,'Not Assigned yet')  as Teacher FROM  Department_tbl d  LEFT OUTER JOIN Course_tbl  c  ON d.Id=c.DepartmentId LEFT OUTER JOIN  Semester_tbl s ON c.SemesterId=s.Id  LEFT OUTER JOIN CourseAssignToTeacher_tbl Ct  ON (c.Id=Ct.CourseId AND Ct.IsAssign=1) LEFT OUTER JOIN Teacher_tbl t ON t.Id=Ct.TeacherId ORDER BY c.Code";
 
             CommandObj.CommandText = query;
             List<CourseViewModel> courseViewModels = new List<CourseViewModel>();
