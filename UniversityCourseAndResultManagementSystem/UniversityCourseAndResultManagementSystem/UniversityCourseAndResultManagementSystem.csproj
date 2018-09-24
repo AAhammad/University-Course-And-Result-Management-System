@@ -161,6 +161,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClassRoomController.cs" />
     <Compile Include="Controllers\CourseAssignToTeacherController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
@@ -168,25 +169,32 @@
     <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\ViewCourseStaticsController.cs" />
+    <Compile Include="Gateway\ClassRoomGateway.cs" />
     <Compile Include="Gateway\CourseAssignToTeacherGateway.cs" />
     <Compile Include="Gateway\CourseGateway.cs" />
     <Compile Include="Gateway\DatabaseGateway.cs" />
+    <Compile Include="Gateway\DayGateway.cs" />
     <Compile Include="Gateway\DepartmentGateway.cs" />
     <Compile Include="Gateway\DesignationGateway.cs" />
+    <Compile Include="Gateway\RoomGateway.cs" />
     <Compile Include="Gateway\SemesterGateway.cs" />
     <Compile Include="Gateway\StudentGateway.cs" />
     <Compile Include="Gateway\TeacherGateway.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Manager\ClassRoomManager.cs" />
     <Compile Include="Manager\CourseAssignToTeacherManager.cs" />
     <Compile Include="Manager\CourseManager.cs" />
+    <Compile Include="Manager\DayManager.cs" />
     <Compile Include="Manager\DepartmentManager.cs" />
     <Compile Include="Manager\DesignationManager.cs" />
+    <Compile Include="Manager\RoomManager.cs" />
     <Compile Include="Manager\SemesterManager.cs" />
     <Compile Include="Manager\StudentManager.cs" />
     <Compile Include="Manager\TeacherManager.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AllocateClassSchedule.cs" />
     <Compile Include="Models\ClassRoom.cs" />
     <Compile Include="Models\ClassSchedule.cs" />
     <Compile Include="Models\Course.cs" />
@@ -676,6 +684,9 @@
     <Content Include="Views\ViewCourseStatics\ShowCourseStatics.cshtml" />
     <Content Include="Views\Student\Index.cshtml" />
     <Content Include="Views\Student\Save.cshtml" />
+    <Content Include="Views\ClassRoom\Index.cshtml" />
+    <Content Include="Views\ClassRoom\Save.cshtml" />
+    <Content Include="Views\ClassRoom\UnAllocateClassRoom.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

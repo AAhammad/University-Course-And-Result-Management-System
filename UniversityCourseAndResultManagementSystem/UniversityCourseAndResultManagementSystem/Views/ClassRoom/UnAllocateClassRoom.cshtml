@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "UnAllocateClassRoom";
+   
+}
+<hr />
+<h2 style="font-size: 30px; color: #5f223b">Unallocate All Classrooms</h2>
+<hr />
+@if (ViewBag.Message != null)
+{
+    <p style="font-size:20px;color:olivedrab">@ViewBag.Message</p>
+}
+<form method="POST">
+    <input type="submit" class="btn-outline-danger shadow" value="UnAllocate Rooms" data-confirm="Are you sure to UnAssign All ClassRooms Info?" />
+</form>
+@section scripts{
+  
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            jQuery('[data-confirm]').click(function (e) {
+                if (!confirm(jQuery(this).attr("data-confirm"))) {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+}
