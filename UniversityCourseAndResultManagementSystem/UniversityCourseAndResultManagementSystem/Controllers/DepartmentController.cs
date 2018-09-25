@@ -28,10 +28,14 @@ namespace UniversityCourseAndResultManagementSystem.Controllers
         [HttpPost]
         public ActionResult Save(Department aDepartment)
         {
+            if (ModelState.IsValid)
+            {
+                string message = aDepartmetManager.SaveDept(aDepartment);
+                ViewBag.Mgs = message;
+                
+            }
 
-            string message = aDepartmetManager.SaveDept(aDepartment);
-            ViewBag.Mgs = message;
-            return View();
+            return View(aDepartment);
 
 
 

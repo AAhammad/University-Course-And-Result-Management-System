@@ -20,15 +20,15 @@ namespace UniversityCourseAndResultManagementSystem.Manager
         {
             if (!(IsCorseCodeValid(aCourse)))
             {
-                return "Course code must be at least 5 character of length";
+                return "Code must be at least five (5) characters long.";
             }
-            if (IsCourseCodeExits(aCourse.Code))
+            if (courseGateway.GetAllCourse().Exists(x=>x.Code.Equals(aCourse.Code,StringComparison.OrdinalIgnoreCase)))
             {
-                return "Course code Already Exists ! Code must be unique";
+                return "Course code Already Exists!";
             }
-            if (IsCourseNameExits(aCourse.Name))
+            if (courseGateway.GetAllCourse().Exists(x => x.Name.Equals(aCourse.Name,StringComparison.OrdinalIgnoreCase)))
             {
-                return "Course Name Already Exists ! Name must be unique";
+                return "Course Name Already Exists!";
             }
             if (courseGateway.SaveCourse(aCourse) > 0)
             {
@@ -37,33 +37,11 @@ namespace UniversityCourseAndResultManagementSystem.Manager
             return "failed";
         }
 
-        private bool IsCourseNameExits(string name)
-        {
-
-            Course course = courseGateway.GetCourseByName(name);
-            if (course != null)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        private bool IsCourseCodeExits(string code)
-        {
-            Course course = courseGateway.GetCourseByCode(code.ToUpper());
-
-            if (course != null)
-            {
-                return true;
-            }
-
-            return false;
-        }
+      
 
         private bool IsCorseCodeValid(Course aCourse)
         {
-            if (aCourse.Code.Length > 5)
+            if (aCourse.Code.Length >= 5)
             {
                 return true;
             }

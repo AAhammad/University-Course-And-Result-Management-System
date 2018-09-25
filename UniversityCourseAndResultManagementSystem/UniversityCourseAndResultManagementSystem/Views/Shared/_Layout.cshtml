@@ -64,7 +64,8 @@
                         <a class="dropdown-item alert-info" href="@Url.Action("Save", "Course")">Save Course</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item alert-info" href="@Url.Action("ShowCourseStatics", "ViewCourseStatics")">View Course Statics</a>
-                        <div class="dropdown-divider"></div>
+                      
+                        
                         
 
                     </div>
@@ -109,8 +110,22 @@
                         <a class="dropdown-item alert-info" href="@Url.Action("Save", "ClassRoom")">Allocate Classroom</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item alert-info" href="@Url.Action("Index", "ClassRoom")">View Class Schedule</a>
+                    
+                        
+
+
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown btn-outline-info shadow ">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        UnAssign
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item alert-info" href="@Url.Action("UnAssignCourses", "Course")">Unassign All Courses</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item alert-info" href="@Url.Action("UnAllocateClassRoom", "ClassRoom")">Unallocate All Classrooms</a>
+                        
 
 
                     </div>
@@ -131,7 +146,8 @@
     @Scripts.Render("~/bundles/bootstrap")
 
     <script src="~/Scripts/jquery-3.3.1.js"></script>
-    <script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
    
     <script src="~/Content/Scripts/bootstrap-hover-dropdown.min.js"></script>
     <script src="~/Scripts/mobiscroll-2.9.5.full.min.js"></script>

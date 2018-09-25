@@ -11,7 +11,7 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
     public class CourseAssignToTeacherGateway : DatabaseGateway
     {
         TeacherManager teacherManager = new TeacherManager();
-        public int Insert(CourseAssignToTeacher courseAssign)
+        public int SaveCourseAssignToTeacherInfo(CourseAssignToTeacher courseAssign)
         {
             ConnectionObj.Open();
 

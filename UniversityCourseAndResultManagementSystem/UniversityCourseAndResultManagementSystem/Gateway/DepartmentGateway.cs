@@ -54,51 +54,6 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
 
         }
 
-        public int GetDepartmentByCode(string code)
-        {
-
-            string query = "SELECT count(*) FROM t_Departments WHERE Code=@code";
-            CommandObj.CommandText = query;
-            CommandObj.Parameters.Clear();
-            CommandObj.Parameters.AddWithValue("@code", code);
-
-            ConnectionObj.Open();
-
-            int count = (int)CommandObj.ExecuteScalar();
-
-
-
-
-            ConnectionObj.Close();
-
-            return count;
-
-
-
-
-
-        }
-
-        public int GetDepartmentByName(string name)
-        {
-
-            string query = "SELECT count(*) FROM t_Departments WHERE Name=@name";
-            CommandObj.CommandText = query;
-            CommandObj.Parameters.Clear();
-            CommandObj.Parameters.AddWithValue("@name", name);
-            Department department = null;
-            ConnectionObj.Open();
-
-            int count = (int)CommandObj.ExecuteScalar();
-
-
-            ConnectionObj.Close();
-
-            return count;
-
-
-
-
-        }
+      
     }
 }

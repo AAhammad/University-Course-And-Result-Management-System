@@ -10,6 +10,11 @@ namespace UniversityCourseAndResultManagementSystem.Controllers
 {
     public class CourseAssignToTeacherController : Controller
     {
+
+        CourseManager courseManger = new CourseManager();
+        DepartmentManager departmentManager = new DepartmentManager();
+        TeacherManager teacherManager = new TeacherManager();
+        CourseAssignToTeacherManager courseAssignToTeacherManager = new CourseAssignToTeacherManager();
         //
         // GET: /CourseAssignToTeacher/
         public ActionResult Index()
@@ -17,10 +22,9 @@ namespace UniversityCourseAndResultManagementSystem.Controllers
             return View();
         }
 
-        CourseManager courseManger = new CourseManager();
-        DepartmentManager departmentManager = new DepartmentManager();
-        TeacherManager teacherManager = new TeacherManager();
-        CourseAssignToTeacherManager courseAssignToTeacherManager = new CourseAssignToTeacherManager();
+       
+
+        [HttpGet]
         public ActionResult AssignCourseToTeacher()
         {
             List<Course> courses = courseManger.GetAllCourses();
@@ -34,11 +38,16 @@ namespace UniversityCourseAndResultManagementSystem.Controllers
         [HttpPost]
         public ActionResult AssignCourseToTeacher(CourseAssignToTeacher courseAssign)
         {
-            
-                ViewBag.Message = courseAssignToTeacherManager.Save(courseAssign);
             List<Course> courses = courseManger.GetAllCourses();
             List<Department> departments = departmentManager.GetAllDepts();
             List<Teacher> teachers = teacherManager.GetAllTeachers();
+
+            if (ModelState.IsValid)
+            {
+                ViewBag.Message = courseAssignToTeacherManager.Save(courseAssign);
+            }
+                
+          
                 ViewBag.Courses = courses;
                 ViewBag.Departments = departments;
                 ViewBag.Teachers = teachers;

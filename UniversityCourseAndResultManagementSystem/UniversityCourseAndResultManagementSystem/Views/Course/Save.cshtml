@@ -1,4 +1,7 @@
-﻿@{
+﻿@model UniversityCourseAndResultManagementSystem.Models.Course
+
+
+@{
     ViewBag.Title = "Add Course";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -16,10 +19,14 @@
 <hr/>
 <h2 style="font-size: 30px; color: #5f223b">Save Course</h2>
 <hr/>
-@if (ViewBag.Message != null)
+@if (ViewBag.Mgs != null && ViewBag.Mgs =="Saved")
 {
-    <p style="font-size: 20px; color: olivedrab">@ViewBag.Message</p>
+    <p style="font-size: 30px; color: green">@ViewBag.Mgs</p>
 
+}
+else
+{
+    <p style="font-size: 30px; color: red">@ViewBag.Mgs</p>
 }
 <div>
     <form id="saveCourseForm" method="POST" class="alert-info">
@@ -27,28 +34,28 @@
             <tr>
                 <td ><label for="Code">Code</label></td>
                 <td ><input type="text" class="form-control" id="Code" name="Code" placeholder="Enter Code"></td>
-
+                <td>@Html.ValidationMessageFor(model => model.Code)</td>
             </tr>
 
             <tr>
                 <td ><label for="Name">Name</label></td>
                 <td ><input type="text" class="form-control" id="Name" name="Name" placeholder="Enter Name"></td>
-
+               <td>@Html.ValidationMessageFor(model => model.Name)</td> 
             </tr>
             <tr>
                 <td><label for="Credit">Credit</label></td>
                 <td><input type="text" class="form-control" id="Credit" name="Credit" placeholder="Enter Credit"></td>
-
+                <td>@Html.ValidationMessageFor(model => model.Credit)</td>
             </tr>
             <tr>
                 <td><label for="Description">Description</label></td>
-                <td><textarea id="Description" name="Description" placeholder="Write Description"></textarea></td>
-
+                <td><textarea id="Description" class="form-control" name="Description" placeholder="Write Description"></textarea></td>
+                <td>@Html.ValidationMessageFor(model => model.Description)</td>
             </tr>
             <tr>
                 <td><label for="DepartmentId">Department</label></td>
                 <td>
-                    <select id="DepartmentId" name="DepartmentId">
+                    <select id="DepartmentId" name="DepartmentId" class="form-control">
                         <option value="">Select Department....</option>
                         @foreach (var dept in ViewBag.Departments)
                         {
@@ -57,12 +64,12 @@
                     </select>
 
                 </td>
-
+                <td>@Html.ValidationMessageFor(model => model.DepartmentId)</td>
             </tr>
             <tr>
                 <td><label for="SemesterId">Semester</label></td>
                 <td>
-                    <select id="SemesterId" name="SemesterId">
+                    <select id="SemesterId" name="SemesterId" class="form-control">
                         <option value="">Select Semester....</option>
                         @foreach (var sem in ViewBag.Semesters)
                         {
@@ -70,7 +77,7 @@
                         }
                     </select>
                 </td>
-
+                <td>@Html.ValidationMessageFor(model => model.SemesterId)</td>
             </tr>
             <tr>
                 <td></td>
@@ -97,7 +104,7 @@
                 Credit: {
                     required: true,
                     number: true,
-                    range: [0.5, 5.00]
+                    range: [0.5, 5.0]
 
                 },
 
@@ -107,19 +114,19 @@
             },
             messages: {
                 Code: {
-                    required: "Please enter a valid Course Code!",
-                    minlength: "Code must be at least 5 charecter! !"
+                    required: "Please enter  Course Code",
+                    minlength: "Code must be at least 5 charecters long "
                 },
 
-                Name: "Please enter the valid Course Name!",
-                Description: "Write something about course!",
+                Name: "Please enter Course Name!",
+                Description: "Please write some description",
                 Credit: {
-                    required: "Credit is required!",
-                    number: "Please! Enter numeric figure only!",
-                    range: "Credit must be beween 0.5 and 5.00"
+                    required: "Please enter Credit !",
+                    number: "Please enter only numeric value!",
+                    range: "Credit must be between 0.5 and 5.0"
                 },
-                DepartmentId: "Please select related department!",
-                SemesterId: "Please select related semester!"
+                DepartmentId: "Please select a department!",
+                SemesterId: "Please select a semester!"
             }
         });
     });

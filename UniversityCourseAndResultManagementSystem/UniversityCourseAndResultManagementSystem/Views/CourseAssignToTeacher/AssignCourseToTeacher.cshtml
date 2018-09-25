@@ -8,10 +8,14 @@
     <hr/>
     <h2 style="font-size: 30px; color: #5f223b">Course Assign To Teacher</h2>
     <hr />
-    @if (ViewBag.Message != null)
+    @if (ViewBag.Message != null && ViewBag.Message == "Assigned successfully")
     {
-        <p style="font-size:20px;color: olivedrab">@ViewBag.Message</p>
+        <p style="font-size: 30px; color: green">@ViewBag.Message</p>
 
+    }
+    else
+    {
+        <p style="font-size: 30px; color: red">@ViewBag.Message</p>
     }
     <form id="courseAssignToteacher" method="POST" class="alert-info">
 
@@ -107,7 +111,7 @@
             var val2 = parseFloat($('#Credit').val());
             var val = val1 - val2;
             if (val < 0) {
-                var flag = confirm('Remaining credit is ' + val + '. Are you sure, you want to assign more credit?');
+                var flag = confirm('Remaining credit is ' + val + '. Are you want to assign more credit?');
                 if (flag == false)
                     return false;
             }

@@ -17,7 +17,7 @@ namespace UniversityCourseAndResultManagementSystem.Manager
 
             if (courseAssignTo == null)
             {
-                if (courseAssignToTeacherGateway.Insert(courseAssign) > 0)
+                if (courseAssignToTeacherGateway.SaveCourseAssignToTeacherInfo(courseAssign) > 0)
                 {
                     return "Assigned successfully";
                 }

@@ -21,39 +21,21 @@ namespace UniversityCourseAndResultManagementSystem.Manager
 
         public string Save(Teacher teacher)
         {
-            if (!(IsEmailAddressValid(teacher.Email)))
+           
+            if (teacherGateway.GetAllTeachers().Exists(x=>x.Email.Equals(teacher.Email,StringComparison.OrdinalIgnoreCase)))
             {
-                return "Please! Enter a valid email address";
+                return "This Email address already exits try another one.";
             }
-            if (IsEmailAddressExits(teacher.Email))
+            if (teacherGateway.SaveTeacher(teacher) > 0)
             {
-                return "Email address must be unique";
-            }
-            if (teacherGateway.Insert(teacher) > 0)
-            {
-                return "Saved Sucessfully";
+                return "Saved";
             }
             return "Failed to save";
         }
 
-        private bool IsEmailAddressExits(string email)
-        {
-            Teacher aTeacher = teacherGateway.GetTeacherByEmailAddress(email);
-            if (aTeacher != null)
-            {
-                return true;
-            }
-            return false;
-        }
+      
 
-        private bool IsEmailAddressValid(string email)
-        {
-            if (email.Contains(".com") && ((email.Contains("@gmail")) || (email.Contains("@yahoo"))))
-            {
-                return true;
-            }
-            return false;
-        }
+     
 
 
     }

@@ -10,11 +10,11 @@ namespace UniversityCourseAndResultManagementSystem.Models
     {
         public int DepartmentId { get; set; }
         
-        [Required(ErrorMessage = "Please enter Department code!")]
-        [StringLength(7, MinimumLength = 2, ErrorMessage = "Code must be contains between 2 and 7 characters!")]
+        [Required(ErrorMessage = "Please enter Department code")]
+        [StringLength(7, MinimumLength = 2, ErrorMessage = "Code must be contains between two(2) and seven(7) characters long")]
         public string Code { get; set; }
 
-        [Required(ErrorMessage = "Please enter a valid Department name!")]
+        [Required(ErrorMessage = "Please enter Department name")]
         public string Name { get; set; }
     }
 }

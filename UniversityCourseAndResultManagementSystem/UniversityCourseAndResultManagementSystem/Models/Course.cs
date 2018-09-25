@@ -11,22 +11,22 @@ namespace UniversityCourseAndResultManagementSystem.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Please enter a valid course code!")]
-        [StringLength(100, MinimumLength = 5, ErrorMessage = "Code must be contains at least 5 characters!")]
+        [Required(ErrorMessage = "Please enter a course code")]
+        [StringLength(100, MinimumLength = 5, ErrorMessage = "Code must be at least five (5) characters long.!")]
         public string Code { get; set; }
-        [Required(ErrorMessage = "Please enter a valid course name!")]
+        [Required(ErrorMessage = "Please enter a course name!")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Please enter a valid Course credit!")]
-        [Range(0.5, 5.00, ErrorMessage = "Credit must be betwwen 0.5 and 5.00")]
+        [Required(ErrorMessage = "Please enter a Course credit!")]
+        [Range(0.5, 5.0, ErrorMessage = "Credit must be between 0.5 and 5.0")]
         public decimal Credit { get; set; }
 
-        [Required(ErrorMessage = "Please write course description!")]
+        [Required(ErrorMessage = "Please enter course description!")]
         public string Description { get; set; }
         [DisplayName("Department")]
-        [Required(ErrorMessage = "Please! Select related department!")]
+        [Required(ErrorMessage = "Please Select a department!")]
         public int DepartmentId { get; set; }
         [DisplayName("Semester")]
-        [Required(ErrorMessage = "Please! Select related semester!")]
+        [Required(ErrorMessage = "Please Select a semester!")]
         public int SemesterId { get; set; }
     }
 }

@@ -33,15 +33,33 @@ namespace UniversityCourseAndResultManagementSystem.Controllers
         [HttpPost]
         public ActionResult Save(Course aCourse)
         {
-            string message = aCourseManager.SaveCourse(aCourse);
-            ViewBag.Mgs = message;
             List<Department> departments = aDepartmetManager.GetAllDepts();
             List<Semester> semesters = aSemesterManager.GetAllSemesters();
+            if (ModelState.IsValid)
+            {
+                string message = aCourseManager.SaveCourse(aCourse);
+                ViewBag.Mgs = message;
+                
+                
+            }
 
             ViewBag.Departments = departments;
             ViewBag.Semesters = semesters;
-            return View();
+            return View(aCourse);
 
+        }
+
+
+        [HttpGet]
+        public ActionResult UnAssignCourses()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult UnAssignCourses(int? id)
+        {
+            ViewBag.Message = aCourseManager.UnAssignCourses();
+            return View();
         }
 	}
 }

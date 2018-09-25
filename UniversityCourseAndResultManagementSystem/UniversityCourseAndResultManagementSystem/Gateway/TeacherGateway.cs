@@ -46,43 +46,11 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
             
         }
 
-        public Teacher GetTeacherByEmailAddress(string email)
+      
+
+        public int SaveTeacher(Teacher teacher)
         {
-           
-                string query = "SELECT * FROM Teacher_tbl WHERE Email=@email";
-                CommandObj.CommandText = query;
-                CommandObj.Parameters.Clear();
-                CommandObj.Parameters.AddWithValue("@email", email);
-                Teacher teacher = null;
-                ConnectionObj.Open();
-                SqlDataReader reader = CommandObj.ExecuteReader();
-                if (reader.Read())
-                {
-                    teacher = new Teacher
-                    {
-                        Id = Convert.ToInt32(reader["Id"].ToString()),
-                        Name = reader["Name"].ToString(),
-                        Address = reader["Address"].ToString(),
-                        Email = reader["Email"].ToString(),
-                        Contact = reader["Contact"].ToString(),
-                        DesignationId = Convert.ToInt32(reader["DesignationId"].ToString()),
-                        DepartmentId = Convert.ToInt32(reader["DepartmentId"].ToString()),
-                        CreditTobeTaken = Convert.ToDecimal((reader["CreditToBeTaken"].ToString()))
 
-                    };
-
-                }
-                reader.Close();
-
-                ConnectionObj.Close();
-                CommandObj.Dispose();
-                return teacher;
-          
-            
-        }
-
-        public int Insert(Teacher teacher)
-        {
 
             string query = "INSERT INTO Teacher_tbl(Name,Address,Email,Contact,DesignationId,DepartmentId,CreditToBeTaken,CreditTaken) VALUES(@Name,@Address,@Email,@Contact, @DesignationId,@DepartmentId,@CreditTobeTaken,@RemainingCredit)";
                 CommandObj.CommandText = query;

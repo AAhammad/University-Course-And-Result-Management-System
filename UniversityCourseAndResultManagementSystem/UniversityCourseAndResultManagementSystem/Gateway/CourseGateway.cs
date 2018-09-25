@@ -16,7 +16,7 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
             string query = "INSERT Course_tbl (Code,Name,Credit,Description,DepartmentId,SemesterId) VALUES(@code,@name,@credit,@description,@department,@semester)";
             CommandObj.CommandText = query;
             CommandObj.Parameters.Clear();
-            CommandObj.Parameters.AddWithValue("code", aCourse.Code.ToUpper());
+            CommandObj.Parameters.AddWithValue("code", aCourse.Code);
             CommandObj.Parameters.AddWithValue("name", aCourse.Name);
             CommandObj.Parameters.AddWithValue("credit", aCourse.Credit);
             CommandObj.Parameters.AddWithValue("description", aCourse.Description);
@@ -65,78 +65,6 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
 
 
         }
-
-
-
-
-        public Course GetCourseByName(string name)
-        {
-
-            string query = "SELECT * FROM Course_tbl WHERE Name=@name";
-            CommandObj.CommandText = query;
-            CommandObj.Parameters.Clear();
-            CommandObj.Parameters.AddWithValue("@name", name);
-            ConnectionObj.Open();
-            Course course = null;
-            SqlDataReader reader = CommandObj.ExecuteReader();
-            if (reader.Read())
-            {
-                course = new Course
-                {
-                    Id = Convert.ToInt32(reader["Id"].ToString()),
-                    Code = reader["Code"].ToString(),
-                    Name = reader["Name"].ToString(),
-                    Credit = Convert.ToDecimal(reader["Credit"].ToString()),
-                    Description = reader["Descirption"].ToString(),
-                    DepartmentId = Convert.ToInt32(reader["DepartmentId"].ToString()),
-                    SemesterId = Convert.ToInt32(reader["SemesterId"].ToString())
-
-                };
-
-            }
-            reader.Close();
-            ConnectionObj.Close();
-            CommandObj.Dispose();
-            return course;
-        }
-
-
-
-
-
-
-        public Course GetCourseByCode(string code)
-        {
-
-            string query = "SELECT * FROM Course_tbl WHERE Code=@code";
-            CommandObj.CommandText = query;
-            CommandObj.Parameters.Clear();
-            CommandObj.Parameters.AddWithValue("@code", code);
-            ConnectionObj.Open();
-            Course course = null;
-            SqlDataReader reader = CommandObj.ExecuteReader();
-            if (reader.Read())
-            {
-                course = new Course
-                {
-                    Id = Convert.ToInt32(reader["Id"].ToString()),
-                    Name = reader["Name"].ToString(),
-                    Code = reader["Code"].ToString(),
-                    Credit = Convert.ToDecimal(reader["Credit"].ToString()),
-                    Description = reader["Descirption"].ToString(),
-                    DepartmentId = Convert.ToInt32(reader["DepartmentId"].ToString()),
-                    SemesterId = Convert.ToInt32(reader["SemesterId"].ToString())
-
-                };
-
-            }
-            reader.Close();
-            ConnectionObj.Close();
-            CommandObj.Dispose();
-            return course;
-        }
-
-
 
 
 

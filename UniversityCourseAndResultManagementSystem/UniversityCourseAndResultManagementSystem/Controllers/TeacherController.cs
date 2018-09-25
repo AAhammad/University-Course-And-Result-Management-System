@@ -39,15 +39,20 @@ namespace UniversityCourseAndResultManagementSystem.Controllers
         // POST: /Teacher/Create
         [HttpPost]
         public ActionResult Save(Teacher teacher)
+
         {
-           
+            IEnumerable<Designation> desinationList = designationManager.GetAllDesignations();
+            IEnumerable<Department> departments = departmentManager.GetAllDepts();
+            if (ModelState.IsValid)
+            {
                 message = teacherManager.Save(teacher);
-                IEnumerable<Designation> desinationList = designationManager.GetAllDesignations();
-                IEnumerable<Department> departments = departmentManager.GetAllDepts();
+                ViewBag.Message = message;
+            }
+      
                 ViewBag.Designations = desinationList;
                 ViewBag.Departments = departments;
-                ViewBag.Message = message;
-                return View();
+
+                return View(teacher);
                
             }
             

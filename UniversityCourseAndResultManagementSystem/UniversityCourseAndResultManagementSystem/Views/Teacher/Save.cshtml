@@ -1,4 +1,4 @@
-﻿
+﻿@model UniversityCourseAndResultManagementSystem.Models.Teacher
 @{
     ViewBag.Title = "Save Teacher";
 }
@@ -7,64 +7,80 @@
     <hr />
     <h2 style="font-size: 30px; color: #5f223b; ">Save Teacher</h2>
     <hr />
-    @if (ViewBag.Message != null)
+    @if (ViewBag.Message != null && ViewBag.Message == "Saved")
     {
-        <p style="font-size:20px;color:olivedrab">@ViewBag.Message</p>
+        <p style="font-size: 30px; color: green">@ViewBag.Message</p>
 
+    }
+    else
+    {
+        <p style="font-size: 30px; color: red">@ViewBag.Message</p>
     }
     <form id="saveTeacherForm" method="POST" class="alert-info ">
 
         <div class="form-group alert-dark" style="width: 35%;">
             <label for="Name" class="font-weight-bold">Name</label>
             <input type="text" class="form-control" id="Name" name="Name" placeholder="Enter Name">
-            @Html.ValidationMessage("Name")
+            @Html.ValidationMessageFor(m => m.Name)
         </div>
         <div class="form-group">
             <label for="Address" class="font-weight-bold">Address</label>
             <textarea type="text" class="form-control" id="Address" name="Address" placeholder="Enter Address"></textarea>
-            @Html.ValidationMessage("Address")
+            @Html.ValidationMessageFor(m => m.Address)
+
+
         </div>
         <div class="form-group alert-dark" style="width: 35%;">
             <label for="Email" class="font-weight-bold">Email</label>
             <input class="form-control" id="Email" name="Email" placeholder="Enter Email">
-            @Html.ValidationMessage("Email")
+            @Html.ValidationMessageFor(m => m.Email)
+
+
         </div>
         <div class="form-group">
             <label for="Contact" class="font-weight-bold">Contact No.</label>
             <input class="form-control" id="Contact" name="Contact" placeholder="Enter Contact">
-            @Html.ValidationMessage("Contact")
+            @Html.ValidationMessageFor(m => m.Contact)
+
+
         </div>
         <div class="form-group alert-dark" style="width: 35%;">
             <label for="DesignationId" class="font-weight-bold">Designation</label>
-            <select id="DesignationId" name="DesignationId">
+            <select id="DesignationId" name="DesignationId" class="form-control">
                 <option value="">Select Designation....</option>
                 @foreach (var designation in ViewBag.Designations)
                 {
                     <option value="@designation.Id">@designation.Title</option>
                 }
             </select>
-            @Html.ValidationMessage("DesignationId")
+            @Html.ValidationMessageFor(m => m.DesignationId)
+
+
         </div>
         <div class="form-group" style="width: 35%;">
             <label for="DepartmentId" class="font-weight-bold">Department</label>
-            <select id="DepartmentId" name="DepartmentId">
+            <select id="DepartmentId" name="DepartmentId" class="form-control">
                 <option value="">Select Department....</option>
                 @foreach (var dept in ViewBag.Departments)
                 {
                     <option value="@dept.DepartmentId">@dept.Name</option>
                 }
             </select>
-            @Html.ValidationMessage("DepartmentId")
+            @Html.ValidationMessageFor(m => m.DepartmentId)
+
+
         </div>
         <div class="form-group alert-dark" style="width: 35%;">
             <label for="CreditTobeTaken" class="font-weight-bold">Credit To be Taken</label>
             <input class="form-control" id="CreditTobeTaken" name="CreditTobeTaken" placeholder="Enter CreditTobeTaken">
-            @Html.ValidationMessage("CreditTobeTaken")
+            @Html.ValidationMessageFor(m => m.CreditTobeTaken)
+
+
         </div>
         <button type="submit" class="btn btn-outline-primary">Save</button>
 
     </form>
-  
+</div>
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
@@ -77,12 +93,15 @@
                         required: true,
                         email: true
                     },
-                    Contact: "required",
+                    Contact: {
+                        required: true
+                       
+                    },
                     CreditTobeTaken:
                     {
                         required: true,
                         number: true,
-                        range: [0, 500]
+                        min: 0
                     },
                     Address: "required",
                     DesignationId: "required",
@@ -90,23 +109,26 @@
 
                 },
                 messages: {
-                    Name: "Please enter the  Name",
+                    Name: "Please enter Teacher Name",
                     Email: {
                         required: "Please email address is required",
-                        email: "Please enter a correct email address"
+                        email: "Please enter a valid email address"
                     },
-                    Contact: "Please enter the  contact",
+                    Contact: {
+                        required: "Please enter contact Number",
+                       
+                   } ,
                     CreditTobeTaken: {
-                        required: "Credit is required!",
-                        number: "Please enter numeric figure only!",
-                        range: "Enter a positive number"
+                        required: "Credit is required ",
+                        number: "Please enter only numeric value",
+                        min: " Please enter a positive number "
                     },
-                    Address: "Address is required!",
-                    DesignationId: "Designation is required!",
-                    DepartmentId: "Please select department"
+                    Address: "Address is required",
+                    DesignationId: "Designation is required",
+                    DepartmentId: "Please select a department"
                 }
             });
         });
     </script>
     
-</div>
+
