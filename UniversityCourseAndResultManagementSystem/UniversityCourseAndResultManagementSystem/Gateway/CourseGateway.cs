@@ -180,7 +180,7 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
         {
 
 
-            string query = "SELECT c.Id,c.Code,c.Name,c.Credit,c.Descirption,c.DepartmentId,c.SemesterId FROM t_Course c INNER JOIN t_StudentEnrollInCourse r ON (c.Id=r.CourseId AND r.StudentId=@StudentId AND r.IsStudentActive=1)";
+            string query = "SELECT c.Id,c.Code,c.Name,c.Credit,c.Description,c.DepartmentId,c.SemesterId FROM Course_tbl c INNER JOIN StudentEnrollInCourse_tbl r ON (c.Id=r.CourseId AND r.StudentId=@StudentId AND r.IsStudentActive=1)";
             CommandObj.CommandText = query;
             CommandObj.Parameters.Clear();
             CommandObj.Parameters.AddWithValue("@StudentId", id);
@@ -196,7 +196,7 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
                     Code = reader["Code"].ToString(),
                     Credit = Convert.ToDecimal(reader["Credit"].ToString()),
                     DepartmentId = Convert.ToInt32(reader["DepartmentId"].ToString()),
-                    Description = reader["Descirption"].ToString(),
+                    Description = reader["Description"].ToString(),
                     SemesterId = Convert.ToInt32(reader["SemesterId"].ToString())
                 };
                 courses.Add(aCourse);

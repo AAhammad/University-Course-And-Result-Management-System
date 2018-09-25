@@ -165,8 +165,10 @@
     <Compile Include="Controllers\CourseAssignToTeacherController.cs" />
     <Compile Include="Controllers\CourseController.cs" />
     <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\EnrollStuInACouseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Controllers\StudentResultController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\ViewCourseStaticsController.cs" />
     <Compile Include="Gateway\ClassRoomGateway.cs" />
@@ -687,6 +689,9 @@
     <Content Include="Views\ClassRoom\Index.cshtml" />
     <Content Include="Views\ClassRoom\Save.cshtml" />
     <Content Include="Views\ClassRoom\UnAllocateClassRoom.cshtml" />
+    <Content Include="Views\EnrollStuInACouse\Enroll.cshtml" />
+    <Content Include="Views\StudentResult\Save.cshtml" />
+    <Content Include="Views\StudentResult\ViewStudentResult.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

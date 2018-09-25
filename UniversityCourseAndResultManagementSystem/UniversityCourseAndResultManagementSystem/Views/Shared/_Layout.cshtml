@@ -64,7 +64,8 @@
                         <a class="dropdown-item alert-info" href="@Url.Action("Save", "Course")">Save Course</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item alert-info" href="@Url.Action("ShowCourseStatics", "ViewCourseStatics")">View Course Statics</a>
-
+                        <div class="dropdown-divider"></div>
+                        
 
                     </div>
                 </li>
@@ -91,8 +92,11 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item alert-info" href="@Url.Action("Save", "Student")">Register Student</a>
                         <div class="dropdown-divider"></div>
-                        @*<a class="dropdown-item alert-info" href="@Url.Action("AssignCourseToTeacher", "CourseAssignToTeacher")">Assign Course To Teacher</a>*@
-
+                        <a class="dropdown-item alert-info" href="@Url.Action("Enroll", "EnrollStuInACouse")">Enroll Student In A Course</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item alert-info" href="@Url.Action("Save", "StudentResult")">Save Student Result</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item alert-info" href="@Url.Action("viewStudentResult", "StudentResult")">View Student Result</a>
 
                     </div>
                 </li>

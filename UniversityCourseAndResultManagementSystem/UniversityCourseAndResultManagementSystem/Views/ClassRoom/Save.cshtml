@@ -12,7 +12,7 @@
 {
     <p style="font-size:20px;color:olive">@ViewBag.Message</p>
 }
-@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "saveClassScedule" }))
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "saveClassScedule",@class="alert-info" }))
 {
     @Html.AntiForgeryToken()
 
@@ -21,7 +21,7 @@
 
         @Html.ValidationSummary(true)
         <div class="form-group">
-            @Html.LabelFor(model => model.DepartmentId, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DepartmentId, new { @class = "custom-control-label col-md-2" })
             <div class="col-md-10">
                 <select id="DepartmentId" name="DepartmentId" class="form-control">
                     <option value="">Select.....</option>
@@ -34,7 +34,7 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.CourseId, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.CourseId, new { @class = "custom-control-label col-md-2" })
             <div class="col-md-10">
                 <select id="CourseId" name="CourseId" class="form-control">
                     <option value="">Select.....</option>
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.RoomId, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.RoomId, new { @class = "custom-control-label col-md-2" })
             <div class="col-md-10">
                 <select id="RoomId" name="RoomId" class="form-control">
                     <option value="">Select.....</option>
@@ -57,7 +57,7 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.DayId, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DayId, new { @class = "custom-control-label col-md-2" })
             <div class="col-md-10">
                 <select id="DayId" name="DayId" class="form-control">
                     <option value="">Select.....</option>
@@ -70,14 +70,14 @@
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.StartTime, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.StartTime, new { @class = "custom-control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.StartTime)
                 @Html.ValidationMessageFor(model => model.StartTime)
             </div>
         </div>
         <div class="form-group">
-            @Html.LabelFor(model => model.Endtime, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Endtime, new { @class = "custom-control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.Endtime)
                 @Html.ValidationMessageFor(model => model.Endtime)
@@ -85,14 +85,12 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-outline-primary" />
             </div>
         </div>
     </div>
 }
-<div>
-    @Html.ActionLink("Back", "Index")
-</div>
+
 @section scripts{
 
   
@@ -103,8 +101,8 @@
 <script src="~/Scripts/bootstrap.js"></script>
     <script>
         $(document).ready(function () {
-            $("#StartTime").mobiscroll({ preset: 'time', 'theme': 'android' });
-            $("#Endtime").mobiscroll({ preset: 'time', 'theme': 'android' });
+            $("#StartTime").mobiscroll({ preset: 'time', 'theme': '' });
+            $("#Endtime").mobiscroll({ preset: 'time', 'theme': '' });
 
             $("#saveClassScedule").validate({
                 rules: {
