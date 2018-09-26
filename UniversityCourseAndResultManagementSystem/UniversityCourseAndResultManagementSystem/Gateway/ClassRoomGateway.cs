@@ -35,36 +35,7 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
 
         }
 
-        //public List<ClassSchedule> GetAllSchedules()
-        //{
-           
-        //            List<ClassSchedule> scheduleList = new List<ClassSchedule>();
-        //            CommandObj.CommandText = "SELECT * FROM classSchedule";
-        //            ConnectionObj.Open();
-        //            SqlDataReader reader = CommandObj.ExecuteReader();
-        //            while (reader.Read())
-        //            {
-        //                ClassSchedule schedule = new ClassSchedule
-        //                {
-        //                    CourseId = Convert.ToInt32(reader["CourseId"].ToString()),
-        //                    DepartmentId = Convert.ToInt32(reader["DepartmentId"].ToString()),
-        //                    CourseCode = reader["Code"].ToString(),
-        //                    CourseName = reader["Name"].ToString(),
-        //                    Schedule = reader["Schedule_Inforamtion"].ToString()
-        //                };
-        //                scheduleList.Add(schedule);
-        //            }
-        //            reader.Close();
-        //            ConnectionObj.Close();
-        //            CommandObj.Dispose();
-        //            return scheduleList;
-               
-                   
-                
-
-            
-        //}
-
+       
 
 
         public List<AllocateClassSchedule> GetAllAllocateClassSchedules()
@@ -102,19 +73,17 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
 
 
 
-        public List<AllocateClassSchedule> GetClassSchedulByStartAndEngingTime(DateTime startTime, DateTime endTime)
-        {
-            CommandObj.CommandText = " Select * from ScheduleOfClassView where  StartTime BETWEEN CAST('" + startTime + "' As Time) AND CAST('" + endTime + "' As Time)";
-            return null;
-
-        }
+      
 
         public List<ClassRoom> GetClassSchedulByStartAndEndingTime(int roomId, int dayId, DateTime startTime, DateTime endTime)
         {
             
-                //CommandObj.CommandText = "Select * from t_AllocateClassRoom where  StartTime BETWEEN CAST('" + startTime +"' As Time) AND CAST('" + endTime + "' As Time) AND RoomId ='" + roomId +
-                //                         "' AND DayId='" + dayId + "'";
-                CommandObj.CommandText = "Select * from AllocateClassRoom_tbl Where DayId=" + dayId + " AND RoomId=" + roomId + " AND AllocationStatus=" + 1;
+             
+                CommandObj.CommandText = "Select * from AllocateClassRoom_tbl Where DayId=@DayId AND RoomId=@RoomId  AND AllocationStatus=1";
+
+            CommandObj.Parameters.Clear();
+            CommandObj.Parameters.AddWithValue("RoomId", roomId);
+            CommandObj.Parameters.AddWithValue("DayId", dayId);
                 List<ClassRoom> tempClassSchedules = new List<ClassRoom>();
                 ConnectionObj.Open();
                 SqlDataReader reader = CommandObj.ExecuteReader();
@@ -148,7 +117,10 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
         {
            
                 List<AllocateClassSchedule> scheduleList = new List<AllocateClassSchedule>();
-                CommandObj.CommandText = "SELECT * FROM ScheduleOfClassView WHERE DepartmentId='" + departmentId + "' AND CourseId='" + courseId + "' AND AllocationStatus='" + 1 + "'";
+                CommandObj.CommandText = "SELECT * FROM ScheduleOfClassView WHERE DepartmentId= @DepartmentId  AND CourseId=@CourseId  AND AllocationStatus= 1 ";
+               CommandObj.Parameters.Clear();
+               CommandObj.Parameters.AddWithValue("DepartmentId", departmentId);
+               CommandObj.Parameters.AddWithValue("CourseId", courseId);
                 ConnectionObj.Open();
                 SqlDataReader reader = CommandObj.ExecuteReader();
                 while (reader.Read())

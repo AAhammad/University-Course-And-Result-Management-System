@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -173,8 +174,10 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
         {
 
 
-            string query = "SELECT * FROM Course_tbl WHERE DepartmentId='" + departmentId + "'";
+            string query = "SELECT * FROM Course_tbl WHERE DepartmentId=@DepartmentId";
             CommandObj.CommandText = query;
+            CommandObj.Parameters.Clear();
+            CommandObj.Parameters.AddWithValue("DepartmentId", departmentId);
             List<Course> courses = new List<Course>();
             ConnectionObj.Open();
             SqlDataReader reader = CommandObj.ExecuteReader();

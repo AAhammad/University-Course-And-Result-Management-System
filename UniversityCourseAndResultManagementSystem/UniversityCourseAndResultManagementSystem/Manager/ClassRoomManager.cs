@@ -15,7 +15,7 @@ namespace UniversityCourseAndResultManagementSystem.Manager
         {
             if (room.StartTime > room.Endtime)
             {
-                return "Time is Unvaluable ! (Hint: To time can't less than From time )";
+                return "To time must be greater than From time )";
             }
             bool isTimeScheduleValid = IsTimeScheduleValid(room.RoomId, room.DayId, room.StartTime, room.Endtime);
 
@@ -34,13 +34,14 @@ namespace UniversityCourseAndResultManagementSystem.Manager
 
         private bool IsTimeScheduleValid(int roomId, int dayId, DateTime startTime, DateTime endTime)
         {
+           
             List<ClassRoom> schedule = classRoomGateway.GetClassSchedulByStartAndEndingTime(roomId, dayId, startTime, endTime);
-            foreach (var sd in schedule)
+            foreach (var aSchedule in schedule)
             {
-                if ((sd.DayId == dayId && roomId == sd.RoomId) &&
-                                 (startTime < sd.StartTime && endTime > sd.StartTime)
-                                 || (startTime < sd.StartTime && endTime > sd.StartTime) ||
-                                 (startTime == sd.StartTime) || (sd.StartTime < startTime && sd.Endtime > startTime)
+                
+                if ((aSchedule.DayId == dayId && roomId == aSchedule.RoomId) && (startTime < aSchedule.StartTime && endTime > aSchedule.StartTime)
+                                 || (startTime < aSchedule.StartTime && endTime > aSchedule.StartTime) ||
+                                 (startTime == aSchedule.StartTime) || (aSchedule.StartTime < startTime && aSchedule.Endtime > startTime)
                                  )
                 {
                     return true;
@@ -51,10 +52,7 @@ namespace UniversityCourseAndResultManagementSystem.Manager
 
         }
 
-        //public List<ClassSchedule> GetAll
-        //{
-        //    get { return classRoomGateway.GetAll; }
-        //}
+      
 
         public List<AllocateClassSchedule> GetAllClassSchedules()
         {

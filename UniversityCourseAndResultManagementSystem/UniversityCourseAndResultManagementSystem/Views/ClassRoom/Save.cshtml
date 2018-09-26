@@ -72,20 +72,23 @@
         <div class="form-group">
             @Html.LabelFor(model => model.StartTime, new { @class = "custom-control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.StartTime)
-                @Html.ValidationMessageFor(model => model.StartTime)
+                @Html.TextBoxFor(model => model.StartTime, new { @class = "form-control", placeholder = "Select From Time" })
+                @Html.ValidationMessageFor(model => model.StartTime )
+                <label id="lbltipAddedComment" style="color: red;" ></label>
             </div>
         </div>
         <div class="form-group">
             @Html.LabelFor(model => model.Endtime, new { @class = "custom-control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Endtime)
+                @Html.TextBoxFor(model => model.Endtime,new{ @class="form-control",placeholder="Select To Time"})
                 @Html.ValidationMessageFor(model => model.Endtime)
+                <label id="lbltipAddedCommentEndTime" style="color: red;"></label>
+
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-outline-primary" />
+                <input type="submit" value="Save"  class="btn btn-outline-primary" onclick="Compare()" />
             </div>
         </div>
     </div>
@@ -93,14 +96,85 @@
 
 @section scripts{
 
-  
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/mobiscroll-2.9.5.full.min.js"></script>
-@*<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
-<script src="~/Scripts/bootstrap.js"></script>
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/mobiscroll-2.9.5.full.min.js"></script>
+    @*<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+    <script src="~/Scripts/bootstrap.js"></script>
+
+
+    <script type="text/javascript">
+
+        function Compare() {
+
+            var lastTime = "05:30 PM";
+            var startTime = "09:00 AM";
+            var start = document.getElementById("StartTime").value;
+            var end = document.getElementById("Endtime").value;
+            var dtStart = new Date("1/1/2011 " + start);
+            var dtEnd = new Date("1/1/2011 " + end);
+            var lastTimeEnd = new Date("1/1/2011 " + lastTime);
+            var startTimestart = new Date("1/1/2011 " + startTime);
+
+            var difference_in_milliseconds = dtEnd - dtStart;
+            document.getElementById('lbltipAddedComment').innerHTML = '';
+            document.getElementById('lbltipAddedCommentEndTime').innerHTML = '';
+
+            if (dtStart < lastTimeEnd && dtStart <startTimestart) {
+                document.getElementById('lbltipAddedComment').innerHTML = 'Start Time must be less than 5:30 PM and grater than 9:00 AM';
+            }
+            else if (difference_in_milliseconds < 0) {
+                document.getElementById('lbltipAddedComment').innerHTML = 'Start Time is greater than end time';
+            }
+
+            if (dtEnd > lastTimeEnd) {
+                document.getElementById('lbltipAddedCommentEndTime').innerHTML = 'End Time must be less than 5:30 PM';
+            }
+          
+            
+               
+           
+            
+        }
+    </script>
+
+    @*<script type="text/javascript">
+    function Compare() {
+        var strStartTime = document.getElementById("StartTime").value;
+        var strEndTime = document.getElementById("Endtime").value;
+        var startTime = new Date().setHours(GetHours(strStartTime), GetMinutes(strStartTime), 0);
+        var endTime = new Date(startTime);
+        endTime = endTime.setHours(GetHours(strEndTime), GetMinutes(strEndTime), 0);
+        if (startTime > endTime) {
+            document.getElementById('lbltipAddedComment').innerHTML = 'Start Time is greater than end time';
+            //alert("Start Time is greater than end time");
+           
+        }
+        else if (startTime == endTime) {
+            //alert("");
+            document.getElementById('lbltipAddedComment').innerHTML = 'Start Time equals end time';
+        }
+        else {
+            document.getElementById('lbltipAddedComment').innerHTML = '';
+        }
+        
+    }
+    function GetHours(d) {
+        var h = parseInt(d.split(':')[0]);
+        if (d.split(':')[1].split(' ')[1] == "PM") {
+            h = h + 12;
+        }
+        return h;
+    }
+    function GetMinutes(d) {
+        return parseInt(d.split(':')[1].split(' ')[0]);
+    }
+</script>*@
+
     <script>
-        $(document).ready(function () {
+
+        $(document).ready(function() {
             $("#StartTime").mobiscroll({ preset: 'time', 'theme': '' });
             $("#Endtime").mobiscroll({ preset: 'time', 'theme': '' });
 
@@ -119,29 +193,29 @@
 
                     RoomId: "Please Select room!",
                     DayId: "Please Select day!",
-                    StartTime:"Select Start time!",
+                    StartTime: "Select Start time!",
                     DepartmentId: "Please select department!",
                     Endtime: "Please select End time!"
                 }
             });
 
-            $("#DepartmentId").change(function () {
+            $("#DepartmentId").change(function() {
                 var deptId = $("#DepartmentId").val();
                 $("#CourseId").empty();
                 $("#CourseId").append('<option value="">Select Course</option>');
 
-                var json = { departmentId: deptId, };
+                var json = { departmentId: deptId };
 
                 $.ajax({
                     type: "POST",
                     url: '@Url.Action("GetCoursesByDepartmentId", "ClassRoom")',
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify(json),
-                    success: function (data) {
-                    
-                        $.each(data, function (key, value) {
-                         
-                            $("#CourseId").append('<option value=' + value.Id + '>' + value.Code + '</option>');
+                    success: function(data) {
+
+                        $.each(data, function(key, value) {
+
+                            $("#CourseId").append('<option value=' + value.Id + '>' + value.Name + '</option>');
 
                         });
                     }
@@ -151,8 +225,9 @@
             });
 
 
-
         });
     </script>
+
+
 }
 

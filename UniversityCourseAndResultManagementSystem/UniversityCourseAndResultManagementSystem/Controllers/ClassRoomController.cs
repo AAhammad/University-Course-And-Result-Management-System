@@ -54,8 +54,8 @@ namespace UniversityCourseAndResultManagementSystem.Controllers
                 ViewBag.Days = days;
                 List<Room> rooms = roomManager.GetAllRooms();
                 ViewBag.Rooms = rooms;
-                var rr = departmentManager.GetAllDepts();
-                ViewBag.Departments = rr;
+                var depts = departmentManager.GetAllDepts();
+                ViewBag.Departments = depts;
                 ViewBag.Courses = courseManager.GetAllCourses();
                 return View();
            
