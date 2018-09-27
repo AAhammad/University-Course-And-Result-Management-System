@@ -19,7 +19,75 @@
 <hr/>
 <h2 style="font-size: 30px; color: #5f223b">Save Course</h2>
 <hr/>
-@if (ViewBag.Mgs != null && ViewBag.Mgs =="Saved")
+    @using (Html.BeginForm("Save", "Course", FormMethod.Post, new { @class = "alert-info" }))
+    {
+        if (ViewBag.Mgs != null && ViewBag.Mgs == "Saved")
+        {
+            <p style="font-size: 30px; color: green">@ViewBag.Mgs</p>
+        }
+        else
+        {
+            <p style="font-size: 30px; color: red">@ViewBag.Mgs</p>
+        }
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            @Html.ValidationSummary(true)
+            <div class="form-group ">
+                @Html.LabelFor(model => model.Code, new { @class = "col-md-2", id = "saveCourseForm" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Code, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Code)
+                </div>
+            </div>
+            <div class="form-group ">
+                @Html.LabelFor(model => model.Name, new {@class = "col-md-2"})
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Name, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+            </div>
+            <div class="form-group ">
+                @Html.LabelFor(model => model.Credit, new {@class = "col-md-2"})
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Credit, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.Credit)
+                </div>
+            </div>
+
+            <div class="form-group ">
+                @Html.LabelFor(model => model.Description, new {@class = "col-md-2"})
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Description, new {@class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.Description)
+                </div>
+            </div>
+
+            <div class="form-group ">
+                @Html.LabelFor(model => model.DepartmentId, new {@class = "col-md-2"})
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.DepartmentId, new SelectList(ViewBag.Departments, "DepartmentId", "Name"), "--Select Department--", new {@class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.DepartmentId)
+                </div>
+            </div>
+            <div class="form-group ">
+                @Html.LabelFor(model => model.SemesterId, new { @class = "col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.SemesterId, new SelectList(ViewBag.Semesters, "SemesterId", "Name"), "--Select Semester--", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SemesterId)
+                </div>
+            </div>
+            <div class="form-group ">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-outline-primary" />
+                </div>
+            </div>
+        </div>
+
+    }
+
+@*@if (ViewBag.Mgs != null && ViewBag.Mgs == "Saved")
 {
     <p style="font-size: 30px; color: green">@ViewBag.Mgs</p>
 
@@ -27,10 +95,11 @@
 else
 {
     <p style="font-size: 30px; color: red">@ViewBag.Mgs</p>
-}
-<div>
-    <form id="saveCourseForm" method="POST" class="alert-info">
+}*@
+
+    @*<form id="saveCourseForm" method="POST" class="alert-info">
         <table class="table table-striped" style="width: 35%;">
+            
             <tr>
                 <td ><label for="Code">Code</label></td>
                 <td ><input type="text" class="form-control" id="Code" name="Code" placeholder="Enter Code"></td>
@@ -40,7 +109,7 @@ else
             <tr>
                 <td ><label for="Name">Name</label></td>
                 <td ><input type="text" class="form-control" id="Name" name="Name" placeholder="Enter Name"></td>
-               <td>@Html.ValidationMessageFor(model => model.Name)</td> 
+                <td>@Html.ValidationMessageFor(model => model.Name)</td>
             </tr>
             <tr>
                 <td><label for="Credit">Credit</label></td>
@@ -85,12 +154,13 @@ else
 
             </tr>
         </table>
-    </form>
-</div>
+    </form>*@
+
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script src="~/Scripts/jquery.validate.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
 <script>
     $(document).ready(function() {
         $("#saveCourseForm").validate({

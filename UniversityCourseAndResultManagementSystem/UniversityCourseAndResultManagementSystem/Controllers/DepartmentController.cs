@@ -11,6 +11,8 @@ namespace UniversityCourseAndResultManagementSystem.Controllers
     public class DepartmentController : Controller
     {
         DepartmentManager aDepartmetManager = new DepartmentManager();
+
+        
         // GET: /Department/
         public ActionResult Index()
         {
@@ -38,8 +40,19 @@ namespace UniversityCourseAndResultManagementSystem.Controllers
             return View(aDepartment);
 
 
+        }
 
+        [HttpPost]
+        public JsonResult CheckingExistingCode(string Code)
+        {
+            return Json(!aDepartmetManager.GetAllDepts().Any(x => x.Code.Equals(Code, StringComparison.OrdinalIgnoreCase)), JsonRequestBehavior.AllowGet);
+        }
 
+        [HttpPost]
+        public JsonResult CheckingExistingName(string Name)
+        {
+            return Json(!aDepartmetManager.GetAllDepts().Any(x => x.Name.Equals(Name, StringComparison.OrdinalIgnoreCase)), JsonRequestBehavior.AllowGet);
         }
 	}
+
 }

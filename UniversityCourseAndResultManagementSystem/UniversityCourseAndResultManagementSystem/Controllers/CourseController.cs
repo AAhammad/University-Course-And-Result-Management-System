@@ -61,5 +61,17 @@ namespace UniversityCourseAndResultManagementSystem.Controllers
             ViewBag.Message = aCourseManager.UnAssignCourses();
             return View();
         }
+
+        [HttpPost]
+        public JsonResult CheckingExistingCourseCode(string Code)
+        {
+            return Json(!aCourseManager.GetAllCourses().Any(x => x.Code.Equals(Code, StringComparison.OrdinalIgnoreCase)),JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult CheckingExistingCourseName(string Name)
+        {
+            return Json(!aCourseManager.GetAllCourses().Any(x => x.Name.Equals(Name, StringComparison.OrdinalIgnoreCase)), JsonRequestBehavior.AllowGet);
+        }
 	}
 }
