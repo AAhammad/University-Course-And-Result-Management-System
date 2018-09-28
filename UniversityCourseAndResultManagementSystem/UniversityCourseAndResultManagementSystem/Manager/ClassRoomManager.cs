@@ -19,12 +19,12 @@ namespace UniversityCourseAndResultManagementSystem.Manager
             }
             bool isTimeScheduleValid = IsTimeScheduleValid(room.RoomId, room.DayId, room.StartTime, room.Endtime);
 
-            if (isTimeScheduleValid != true)
+            if (isTimeScheduleValid)
             {
 
                 if (classRoomGateway.InsertClassRoom(room) > 0)
                 {
-                    return "Saved Successfully !";
+                    return "Saved Successfully!";
                 }
                 return "Failed to save";
 
@@ -38,17 +38,16 @@ namespace UniversityCourseAndResultManagementSystem.Manager
             List<ClassRoom> schedule = classRoomGateway.GetClassSchedulByStartAndEndingTime(roomId, dayId, startTime, endTime);
             foreach (var aSchedule in schedule)
             {
-                
+
                 if ((aSchedule.DayId == dayId && roomId == aSchedule.RoomId) && (startTime < aSchedule.StartTime && endTime > aSchedule.StartTime)
                                  || (startTime < aSchedule.StartTime && endTime > aSchedule.StartTime) ||
-                                 (startTime == aSchedule.StartTime) || (aSchedule.StartTime < startTime && aSchedule.Endtime > startTime)
-                                 )
+                                 (startTime == aSchedule.StartTime) || (aSchedule.StartTime < startTime && aSchedule.Endtime > startTime))
                 {
-                    return true;
+                    return false;
                 }
 
             }
-            return false;
+            return true;
 
         }
 
@@ -64,21 +63,21 @@ namespace UniversityCourseAndResultManagementSystem.Manager
 
         public string GetAllClassSchedulesByDeparmentId(int departmentId, int courseId)
         {
-            IEnumerable<AllocateClassSchedule> classSchedules = classRoomGateway.GetAllClassSchedulesByDeparmentId(departmentId, courseId);
+            List<AllocateClassSchedule> classSchedules = classRoomGateway.GetAllClassSchedulesByDeparmentId(departmentId, courseId);
 
             string output = "";
 
-            foreach (var acls in classSchedules)
+            foreach (var aClass in classSchedules)
             {
 
-                if (acls.RoomName.StartsWith("R"))
+                if (aClass.RoomName.StartsWith("R"))
                 {
-                    output += acls.RoomName + ", " + acls.DayName + ", " + acls.StartTime.ToShortTimeString() + " - " + acls.EndTime.ToShortTimeString() + ";<br />";
+                    output +="R. No : "+ aClass.RoomName + ", " + aClass.DayName + ", " + aClass.StartTime.ToShortTimeString() + " - " + aClass.EndTime.ToShortTimeString() + ";<br />";
                 }
 
-                else if (acls.RoomName.StartsWith("N"))
+                else if (aClass.RoomName.StartsWith("N"))
                 {
-                    output = acls.RoomName;
+                    output = aClass.RoomName;
 
                 }
 

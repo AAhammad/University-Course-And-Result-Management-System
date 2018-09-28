@@ -8,10 +8,14 @@
 <hr />
 <h2 style="font-size: 30px; color: #5f223b">Allocate Classrooms</h2>
 <hr />
-@if (ViewBag.Message != null)
-{
-    <p style="font-size:20px;color:olive">@ViewBag.Message</p>
-}
+ @if (ViewBag.Message != null && ViewBag.Message == "Saved Successfully!")
+    {
+    <p style="font-size: 30px; color: green">@ViewBag.Message</p>
+    }
+    else
+    {
+    <p style="font-size: 30px; color: red">@ViewBag.Message</p>
+    }
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "saveClassScedule",@class="alert-info" }))
 {
     @Html.AntiForgeryToken()
@@ -24,7 +28,7 @@
             @Html.LabelFor(model => model.DepartmentId, new { @class = "custom-control-label col-md-2" })
             <div class="col-md-10">
                 <select id="DepartmentId" name="DepartmentId" class="form-control">
-                    <option value="">Select.....</option>
+                    <option value="">--Select Department--</option>
                     @foreach (var dept in ViewBag.Departments)
                     {
                         <option value="@dept.DepartmentId">@dept.Name</option>
@@ -37,7 +41,7 @@
             @Html.LabelFor(model => model.CourseId, new { @class = "custom-control-label col-md-2" })
             <div class="col-md-10">
                 <select id="CourseId" name="CourseId" class="form-control">
-                    <option value="">Select.....</option>
+                    <option value="">--Select Course--</option>
 
                 </select>
                 @Html.ValidationMessageFor(model => model.CourseId)
@@ -47,7 +51,7 @@
             @Html.LabelFor(model => model.RoomId, new { @class = "custom-control-label col-md-2" })
             <div class="col-md-10">
                 <select id="RoomId" name="RoomId" class="form-control">
-                    <option value="">Select.....</option>
+                    <option value="">--Select Room--</option>
                     @foreach (var room in ViewBag.Rooms)
                     {
                         <option value="@room.Id">@room.Name</option>
@@ -60,7 +64,7 @@
             @Html.LabelFor(model => model.DayId, new { @class = "custom-control-label col-md-2" })
             <div class="col-md-10">
                 <select id="DayId" name="DayId" class="form-control">
-                    <option value="">Select.....</option>
+                    <option value="">--Select Day--</option>
                     @foreach (var day in ViewBag.Days)
                     {
                         <option value="@day.Id">@day.Name</option>
@@ -88,7 +92,7 @@
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save"  class="btn btn-outline-primary" onclick="Compare()" />
+                <input type="submit" value="Save" class="btn btn-outline-primary" onclick="return Compare();"  />
             </div>
         </div>
     </div>
@@ -123,19 +127,21 @@
 
             if (dtStart < lastTimeEnd && dtStart <startTimestart) {
                 document.getElementById('lbltipAddedComment').innerHTML = 'Start Time must be less than 5:30 PM and grater than 9:00 AM';
+                return false;
             }
             else if (difference_in_milliseconds < 0) {
                 document.getElementById('lbltipAddedComment').innerHTML = 'Start Time is greater than end time';
+                return false;
             }
 
             if (dtEnd > lastTimeEnd) {
-                document.getElementById('lbltipAddedCommentEndTime').innerHTML = 'End Time must be less than 5:30 PM';
+                document.getElementById('lbltipAddedCommentEndTime').innerHTML = 'End Time must be less than 5:30 PM and grater than 9:00 AM';
+                return false;
             }
-          
-            
-               
-           
-            
+
+            return true;
+
+
         }
     </script>
 
@@ -175,8 +181,8 @@
     <script>
 
         $(document).ready(function() {
-            $("#StartTime").mobiscroll({ preset: 'time', 'theme': '' });
-            $("#Endtime").mobiscroll({ preset: 'time', 'theme': '' });
+            $("#StartTime").mobiscroll({ preset: 'time', 'theme': 'wp' });
+            $("#Endtime").mobiscroll({ preset: 'time', 'theme': 'wp' });
 
             $("#saveClassScedule").validate({
                 rules: {
@@ -189,13 +195,13 @@
 
                 },
                 messages: {
-                    CourseId: "Please Select  Course!",
+                    CourseId: "Please Select a Course",
 
-                    RoomId: "Please Select room!",
-                    DayId: "Please Select day!",
-                    StartTime: "Select Start time!",
-                    DepartmentId: "Please select department!",
-                    Endtime: "Please select End time!"
+                    RoomId: "Please Select a room",
+                    DayId: "Please Select a day",
+                    StartTime: "Select Start time ,",
+                    DepartmentId: "Please select a department",
+                    Endtime: "Please select End time"
                 }
             });
 

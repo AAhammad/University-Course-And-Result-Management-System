@@ -18,7 +18,7 @@ namespace UniversityCourseAndResultManagementSystem.Controllers
 
         private List<AllocateClassSchedule> classRooms;
         //
-        // GET: /ClassRoom/
+        // GET: /ClassRoom/get information about room allocation
         public ActionResult Index()
         {
             ViewBag.Departments = departmentManager.GetAllDepts();

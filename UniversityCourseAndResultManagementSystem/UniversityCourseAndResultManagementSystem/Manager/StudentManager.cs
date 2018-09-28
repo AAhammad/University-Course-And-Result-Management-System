@@ -95,21 +95,17 @@ namespace UniversityCourseAndResultManagementSystem.Manager
         public string Save(EnrollStudentInCourse enrollStudentInCourse)
         {
             EnrollStudentInCourse enrollStudent =
-                GetEnrollCourses().ToList()
-                    .Find(
-                        st =>
-                            (st.StudentId == enrollStudentInCourse.StudentId &&
-                            st.CourseId == enrollStudentInCourse.CourseId) && (st.Status));
+                GetEnrollCourses().ToList().Find(s =>(s.StudentId == enrollStudentInCourse.StudentId && s.CourseId == enrollStudentInCourse.CourseId) && (s.Status));
             if (enrollStudent == null)
             {
                 if (studentGateway.EnrollStudentInACourse(enrollStudentInCourse) > 0)
                 {
-                    return "Saved Successfully!";
+                    return "Saved Successfully";
                 }
                 return "Failed to save";
             }
 
-            return "This course already taken by the student";
+            return "Already Enroll in this course";
         }
 
         public List<EnrollStudentInCourse> GetEnrollCourses()

@@ -13,7 +13,7 @@
                 <td>@Html.LabelFor(x => x.DepartmentId)</td>
                 <td>
                     <select id="DepartmentId" class="form-control">
-                        <option value="">Select department</option>
+                        <option value="">--Select department--</option>
                         @foreach (var dept in ViewBag.Departments)
                         {
                             <option value="@dept.DepartmentId">@dept.Name</option>
@@ -27,7 +27,7 @@
             <thead class="table-striped">
                 <tr class="alert-info">
                     <th style="width: 150px;" class="alert-info">Course Code</th>
-                    <th style="width: 220px;" class="alert-info">Course Name</th>
+                    <th style="width: 220px;" class="alert-info">Name</th>
                     <th style="width: 350px;" class="alert-info">Schedule Info</th>
                 </tr>
             </thead>

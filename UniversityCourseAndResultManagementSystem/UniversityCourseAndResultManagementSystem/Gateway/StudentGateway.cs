@@ -47,8 +47,10 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
 
         public string GetLastAddedStudentRegistration(string searchKey)
         {
-            string query = "SELECT * FROM Student_tbl st WHERE RegNo LIKE '%" + searchKey + "%' and Id=(select Max(Id) FROM Student_tbl st WHERE RegNo LIKE '%" + searchKey + "%' )";
+            string query = "SELECT * FROM Student_tbl st WHERE RegNo LIKE '%@SearchKey%' and Id=(select Max(Id) FROM Student_tbl st WHERE RegNo LIKE '%@SearchKey%' )";
             CommandObj.CommandText = query;
+            CommandObj.Parameters.Clear();
+            CommandObj.Parameters.AddWithValue("SearchKey", searchKey);
             ConnectionObj.Open();
             Student aStudent = null;
             string regNo = null;
@@ -264,9 +266,14 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
         public int UpdateStudentEnrollInCourseIsActive(EnrollStudentInCourse enrollStudentInCourse)
         {
             ConnectionObj.Open();
-         
-               
-                CommandObj.CommandText = "UPDATE StudentEnrollInCourse_tbl SET IsStudentActive=1 WHERE StudentId='" + enrollStudentInCourse.StudentId + "' AND CourseId='" + enrollStudentInCourse.CourseId + "'";
+
+
+            //CommandObj.CommandText = "UPDATE StudentEnrollInCourse_tbl SET IsStudentActive=1 WHERE StudentId='" + enrollStudentInCourse.StudentId + "' AND CourseId='" + enrollStudentInCourse.CourseId + "'";
+            CommandObj.CommandText = "UPDATE StudentEnrollInCourse_tbl SET IsStudentActive=1 WHERE StudentId=@StudentId AND CourseId=@CourseId";
+            CommandObj.Parameters.Clear();
+
+            CommandObj.Parameters.AddWithValue("StudentId",enrollStudentInCourse.StudentId );
+            CommandObj.Parameters.AddWithValue("CourseId",enrollStudentInCourse.CourseId );
                 int updateResult = CommandObj.ExecuteNonQuery();
        
             // int updateResult = UpdateStudentEnrolledCourses(enrollStudentInCourse);
@@ -283,8 +290,15 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
 
         public int UpdateStudentResult(StudentResult studentResult)
         {
-            CommandObj.CommandText = "UPDATE StudentResult_tbl SET IsStudentActive=1,Grade='" + studentResult.Grade + "' WHERE StudentId='" +
-                                     studentResult.StudentId + "' AND CourseId='" + studentResult.CourseId + "'";
+            //CommandObj.CommandText = "UPDATE StudentResult_tbl SET IsStudentActive=1,Grade='" + studentResult.Grade + "' WHERE StudentId='" +
+            //                         studentResult.StudentId + "' AND CourseId='" + studentResult.CourseId + "'";
+
+            CommandObj.CommandText = "UPDATE StudentResult_tbl SET IsStudentActive=1,Grade=@Grade WHERE StudentId=@StudentId AND CourseId=@CourseId";
+            CommandObj.Parameters.Clear();
+            CommandObj.Parameters.AddWithValue("Grade", studentResult.Grade);
+            CommandObj.Parameters.AddWithValue("StudentId", studentResult.StudentId);
+            CommandObj.Parameters.AddWithValue("CourseId", studentResult.CourseId);
+
             ConnectionObj.Open();
 
 
