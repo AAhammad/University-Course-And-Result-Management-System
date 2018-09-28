@@ -11,7 +11,7 @@ namespace UniversityCourseAndResultManagementSystem.Models
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Please select a student Registration No!")]
-        [DisplayName("Student Reg No.")]
+        [DisplayName("Student Reg. No.")]
         public int StudentId { get; set; }
 
         public string Name { get; set; }

@@ -28,6 +28,8 @@ namespace UniversityCourseAndResultManagementSystem.Controllers
         // GET: /Teacher/Create
         public ActionResult Save()
         {
+           
+
             List<Designation> desinationList = designationManager.GetAllDesignations();
             List<Department> departments = departmentManager.GetAllDepts();
             ViewBag.Designations = desinationList;
@@ -55,8 +57,12 @@ namespace UniversityCourseAndResultManagementSystem.Controllers
                 return View(teacher);
                
             }
-            
-        
+
+        [HttpPost]
+        public JsonResult CheckingExistingEmail(string Email)
+        {
+            return Json(!teacherManager.GetAllTeachers().Any(x => x.Email.Equals(Email, StringComparison.OrdinalIgnoreCase)), JsonRequestBehavior.AllowGet);
+        }
 
 	}
 }

@@ -21,6 +21,7 @@
         <div class="form-group alert-dark" style="width: 35%;">
             <label for="Name" class="font-weight-bold">Name</label>
             <input type="text" class="form-control" id="Name" name="Name" placeholder="Enter Name">
+            
             @Html.ValidationMessageFor(m => m.Name)
         </div>
         <div class="form-group">
@@ -32,7 +33,8 @@
         </div>
         <div class="form-group alert-dark" style="width: 35%;">
             <label for="Email" class="font-weight-bold">Email</label>
-            <input class="form-control" id="Email" name="Email" placeholder="Enter Email">
+            @*<input class="form-control" id="Email" name="Email" placeholder="Enter Email">*@
+            @Html.TextBoxFor(model=>model.Email,new{@class="form-control"})
             @Html.ValidationMessageFor(m => m.Email)
 
 
@@ -89,10 +91,10 @@
             $("#saveTeacherForm").validate({
                 rules: {
                     Name: "required",
-                    Email: {
-                        required: true,
-                        email: true
-                    },
+                    //Email: {
+                    //    required: true,
+                    //    email: true
+                    //},
                     Contact: {
                         required: true
                        
@@ -110,12 +112,12 @@
                 },
                 messages: {
                     Name: "Please enter Teacher Name",
-                    Email: {
-                        required: "Please email address is required",
-                        email: "Please enter a valid email address"
-                    },
+                    //Email: {
+                    //    required: "Please email address is required",
+                    //    email: "Please enter a valid email address"
+                    //},
                     Contact: {
-                        required: "Please enter contact Number",
+                        required: "Please enter contact Number"
                        
                    } ,
                     CreditTobeTaken: {

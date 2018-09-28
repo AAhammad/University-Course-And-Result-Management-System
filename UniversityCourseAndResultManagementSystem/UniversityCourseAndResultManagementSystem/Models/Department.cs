@@ -18,7 +18,7 @@ namespace UniversityCourseAndResultManagementSystem.Models
 
         [Required(ErrorMessage = "Please enter Department name")]
         [Remote("CheckingExistingName", "Department", HttpMethod = "POST", ErrorMessage = "Name Already Exists")]
-        [StringLength(49, MinimumLength = 0, ErrorMessage = "Name must be less than 50 characters long")]
+        [StringLength(199, MinimumLength = 0, ErrorMessage = "Name must be less than 200 characters long")]
         public string Name { get; set; }
     }
 }

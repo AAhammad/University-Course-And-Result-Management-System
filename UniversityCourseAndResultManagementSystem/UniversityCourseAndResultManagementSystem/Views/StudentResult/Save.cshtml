@@ -6,15 +6,16 @@
 }
 <hr />
 <h2>Save Student Result</h2>
-<hr />
+<hr/>
+@if (ViewBag.Message != null)
+{
+    <p style="font-size:20px;color:green">@ViewBag.Message</p>
+}
 <div>
-    <form id="saveStudentResult" method="POST">
-        @if (ViewBag.Message != null)
-        {
-            <p style="font-size:20px;color:olivedrab">@ViewBag.Message</p>
-        }
+    <form id="saveStudentResult" method="POST" class="alert-info">
+       
         <div>
-            <table>
+            <table class="table-striped">
                 <tr>
 
                     <td>
@@ -22,7 +23,7 @@
                     </td>
                     <td>
                         <select id="StudentId" name="StudentId" class="form-control">
-                            <option value="">Select.....</option>
+                            <option value="">--Select Reg. No.--</option>
                             @foreach (var student in ViewBag.Students)
                             {
                                 <option value="@student.Id">@student.RegNo</option>
@@ -60,7 +61,7 @@
                     </td>
                     <td>
                         <select id="CourseId" name="CourseId" class="form-control">
-                            <option value="">Select.....</option>
+                            <option value="">--Select Course--</option>
                         </select>
                     </td>
                 </tr>
@@ -70,7 +71,7 @@
                     </td>
                     <td>
                         <select id="Grade" name="Grade" class="form-control">
-                            <option value="">Select Grade</option>
+                            <option value="">--Select Grade--</option>
                             <option value="A+">A+</option>
                             <option value="A">A</option>
                             <option value="A-">A-</option>

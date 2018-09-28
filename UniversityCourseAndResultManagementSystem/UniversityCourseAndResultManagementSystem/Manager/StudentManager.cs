@@ -59,29 +59,27 @@ namespace UniversityCourseAndResultManagementSystem.Manager
                 }
 
             }
-            var listOfEmailAddress = from student in GetAllStudents()
-                                     select student.Email;
-            string tempEmail = listOfEmailAddress.ToList().Find(email => email.Contains(aStudent.Email));
+          
 
-            if (tempEmail != null)
+            if (studentGateway.GetAllStudents().Any(x => x.Email.Equals(aStudent.Email, StringComparison.OrdinalIgnoreCase)))
             {
-                return "Email address must be unique";
+                return "Email address already exist";
             }
             if (IsEmailAddressValid(aStudent.Email))
             {
                 if (studentGateway.SaveStudent(aStudent) > 0)
                 {
-                    return "Saved Successfully!;Registration No:" + aStudent.RegNo + ";Name:" + aStudent.Name + ";Email:" + aStudent.Email + ";Contact Number:" + aStudent.Contact;
+                    return "Registration Done!,Name: " + aStudent.Name + ",Email: " + aStudent.Email + ",Contact Number: " + aStudent.Contact+",Date: "+aStudent.RegDate.ToShortDateString()+",Address: "+aStudent.Address+",Registration No: " + aStudent.RegNo ;
                 }
 
                 return "Failed to save";
             }
-            return "Please! enter a valid email address";
+            return "Please enter a valid email address";
         }
 
         private bool IsEmailAddressValid(string email)
         {
-            if (email.Contains(".com") && ((email.Contains("@gmail")) || (email.Contains("@yahoo")) || (email.Contains("@live")) || (email.Contains("@outlook"))))
+            if (email.Contains(".") && (email.Contains("@") ))
             {
                 return true;
             }
@@ -123,44 +121,30 @@ namespace UniversityCourseAndResultManagementSystem.Manager
         {
             StudentResult result =
                 GetAllStudentResults().ToList()
-                    .Find(st => st.StudentId == studentResult.StudentId && st.CourseId == studentResult.CourseId);
+                    .Find(s => s.StudentId == studentResult.StudentId && s.CourseId == studentResult.CourseId && s.Status);
             if (result == null)
             {
                 if (studentGateway.SaveStudentResult(studentResult) > 0)
                 {
-                    return "Saved sucessfull!";
+                    return "Saved sucessfully";
                 }
                 return "Failed to save";
 
             }
-            if (result.Status)
+           
+            if (result!=null)
             {
-                return "This course result already saved";
-            }
-            if (studentGateway.UpdateStudentResult(studentResult) > 0)
-            {
-                return "Saved sucessfull!";
-            }
+                if (studentGateway.UpdateStudentResult(studentResult) > 0)
+                {
+                    return "update sucessfully";
+                }
 
-            return "This course result already saved";
+                return "not updated";
+            }
+            return "Failed to save";
         }
 
-        //private bool IsResulExits(StudentResult studentResult)
-        //{
-        //    StudentResult result =
-        //        GetAllResult.ToList()
-        //            .Find(st => st.StudentId == studentResult.StudentId && st.CourseId == studentResult.CourseId);
-        //    if (result != null)
-        //    {
-        //        bool st = result.Status;
-        //        if (st)
-        //        {
-        //            return true;  
-        //        }
-
-        //    }
-        //    return false;
-        //}
+     
 
         public IEnumerable<StudentResult> GetAllStudentResults()
         {

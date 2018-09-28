@@ -13,7 +13,7 @@ namespace UniversityCourseAndResultManagementSystem.Manager
         public string Save(CourseAssignToTeacher courseAssign)
         {
 
-            CourseAssignToTeacher courseAssignTo = GetAllaCourseAssignToTeachers().ToList().Find(ca => ca.CourseId == courseAssign.CourseId && ca.Status);
+            CourseAssignToTeacher courseAssignTo = courseAssignToTeacherGateway.GetAllCourseAssignToTeacher().Find(ca => ca.CourseId == courseAssign.CourseId && ca.Status);
 
             if (courseAssignTo == null)
             {
@@ -24,14 +24,11 @@ namespace UniversityCourseAndResultManagementSystem.Manager
                 return "Failed to save";
             }
 
-            return "Overlaping not allowed!";
+            return "This Course is Already Assign!";
         }
 
 
-        public List<CourseAssignToTeacher> GetAllaCourseAssignToTeachers()
-        {
-            return courseAssignToTeacherGateway.GetAllCourseAssignToTeacher();
-        } 
+       
 
     }
 }

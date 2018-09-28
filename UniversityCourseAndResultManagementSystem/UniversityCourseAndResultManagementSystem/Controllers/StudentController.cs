@@ -40,18 +40,30 @@ namespace UniversityCourseAndResultManagementSystem.Controllers
         [HttpPost]
         public ActionResult Save(Student aStudent)
         {
-            
-                message = studentManager.Save(aStudent);
 
-                IEnumerable<Department> departments = departmentManager.GetAllDepts();
+
+            IEnumerable<Department> departments = departmentManager.GetAllDepts();
+            if (ModelState.IsValid)
+            {
+                message = studentManager.Save(aStudent);
+                ViewBag.Message = message;
+            }
+              
+
 
                 ViewBag.Departments = departments;
-                ViewBag.Message = message;
+                
                 ViewBag.StudentInfo = aStudent;
 
-                return View();
+                return View(aStudent);
                 //return RedirectToAction("Index");
           
+        }
+
+        [HttpPost]
+        public JsonResult CheckingExistingEmail(string Email)
+        {
+            return Json(!studentManager.GetAllStudents().Any(x => x.Email.Equals(Email, StringComparison.OrdinalIgnoreCase)), JsonRequestBehavior.AllowGet);
         }
 
 	}

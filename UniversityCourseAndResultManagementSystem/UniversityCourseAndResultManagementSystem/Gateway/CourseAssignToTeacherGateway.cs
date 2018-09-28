@@ -43,8 +43,12 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
             Teacher teacher = teacherManager.GetAllTeachers().ToList().Find(t => t.Id == courseAssign.TeacherId);
 
             decimal creditTakenbyTeacher = Convert.ToDecimal(teacher.CreditTaken) + Convert.ToDecimal(courseAssign.Credit);
-            CommandObj.CommandText = "Update Teacher_tbl Set CreditTaken='" + creditTakenbyTeacher + "' WHERE Id='" +
-                                     courseAssign.TeacherId + "'";
+         
+
+            CommandObj.CommandText = "Update Teacher_tbl Set CreditTaken=@creditTaken WHERE Id=@id";
+            CommandObj.Parameters.Clear();
+            CommandObj.Parameters.AddWithValue("creditTaken", creditTakenbyTeacher);
+            CommandObj.Parameters.AddWithValue("id", courseAssign.TeacherId);
             return CommandObj.ExecuteNonQuery();
         }
 
@@ -85,8 +89,10 @@ namespace UniversityCourseAndResultManagementSystem.Gateway
         {
             ConnectionObj.Open();
 
-
-            CommandObj.CommandText = "UPDATE CourseAssignToTeacher_tbl SET IsAssign=1 WHERE TeacherId='" + courseAssign.TeacherId + "' AND CourseId='" + courseAssign.CourseId + "'";
+            CommandObj.CommandText = "UPDATE CourseAssignToTeacher_tbl SET IsAssign=1 WHERE TeacherId=@teacherId AND CourseId=@courseId";
+            CommandObj.Parameters.Clear();
+            CommandObj.Parameters.AddWithValue("teacherId",courseAssign.TeacherId );
+            CommandObj.Parameters.AddWithValue("courseId", courseAssign.CourseId);
             CommandObj.ExecuteNonQuery();
 
             int updateResult = UpdateTeacher(courseAssign);

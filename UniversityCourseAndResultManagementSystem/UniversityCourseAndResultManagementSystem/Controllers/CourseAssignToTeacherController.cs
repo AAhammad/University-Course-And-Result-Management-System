@@ -35,9 +35,12 @@ namespace UniversityCourseAndResultManagementSystem.Controllers
             ViewBag.Teachers = teachers;
             return View();
         }
+
+
         [HttpPost]
         public ActionResult AssignCourseToTeacher(CourseAssignToTeacher courseAssign)
         {
+            //ViewBag.Message = "";
             List<Course> courses = courseManger.GetAllCourses();
             List<Department> departments = departmentManager.GetAllDepts();
             List<Teacher> teachers = teacherManager.GetAllTeachers();

@@ -26,11 +26,11 @@
         <table class="table table-striped alert-info " style="width: 50%">
             <tr>
                 <td>
-                    <label for="StudentId"  >Student Reg. No</label>
+                    <label for="StudentId"  >Student Reg. No.</label>
                 </td>
                 <td>
                     <select id="StudentId" name="StudentId" class="form-control">
-                        <option value="">Select.....</option>
+                        <option value="">--Select Reg. No.--</option>
                         @foreach (var student in ViewBag.Students)
                         {
                             <option value="@student.Id">@student.RegNo</option>

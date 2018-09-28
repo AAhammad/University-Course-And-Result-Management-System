@@ -11,22 +11,24 @@
     <meta name="viewport" content="width=device-width" />
     <title>Save</title>
     <link href="~/Content/Style.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
 <body>
 
 <hr/>
     <h2 style="font-size: 30px; color: #5f223b">Save Department</h2>
 <hr/>
+    @if (ViewBag.Mgs != null && ViewBag.Mgs == "Saved")
+    {
+    <p style="font-size: 30px; color: green">@ViewBag.Mgs</p>
+    }
+    else
+    {
+    <p style="font-size: 30px; color: red">@ViewBag.Mgs</p>
+    }
 @using (Html.BeginForm("Save", "Department", FormMethod.Post, new { @class = "alert-info" }))
 {
-    if (ViewBag.Mgs != null && ViewBag.Mgs == "Saved")
-    {
-        <p style="font-size: 30px; color: green">@ViewBag.Mgs</p>
-    }
-    else 
-    {
-      <p style="font-size: 30px; color: red">@ViewBag.Mgs</p>
-    }
+   
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">

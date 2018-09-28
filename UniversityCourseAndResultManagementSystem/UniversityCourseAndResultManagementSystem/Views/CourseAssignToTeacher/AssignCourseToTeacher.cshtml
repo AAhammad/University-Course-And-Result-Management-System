@@ -26,7 +26,7 @@
                 </td>
                 <td>
                     <select id="DepartmentId" name="DepartmentId" class="form-control">
-                        <option value="">Select Department....</option>
+                        <option value="">--Select Department--</option>
                         @foreach (var dept in ViewBag.Departments)
                         {
                             <option value="@dept.DepartmentId">@dept.Name</option>
@@ -40,7 +40,7 @@
                 </td>
                 <td>
                     <select id="TeacherId" name="TeacherId" class="form-control">
-                        <option value="">Select Teacher....</option>
+                        <option value="">--Select Teacher--</option>
                     </select>
                 </td>
             </tr>
@@ -68,7 +68,7 @@
                 </td>
                 <td>
                     <select id="CourseId" name="CourseId" class="form-control">
-                        <option value="">Select ....</option>
+                        <option value="">--Select Course Code--</option>
 
                     </select>
                 </td>
@@ -139,7 +139,7 @@
             var deptId = $("#DepartmentId").val();
             $("#TeacherId").empty();
             $("#CourseId").empty();
-            $("#CourseId").append('<option value=' + "" + '>--Select Course--</option>');
+            $("#CourseId").append('<option value=' + "" + '>--Select Course Code--</option>');
             $("#TeacherId").append('<option value=' + "" + '>--Select Teacher--</option>');
             var json = { departmentId: deptId, };
 
