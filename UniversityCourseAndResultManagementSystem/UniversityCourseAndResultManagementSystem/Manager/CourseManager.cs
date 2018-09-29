@@ -62,7 +62,7 @@ namespace UniversityCourseAndResultManagementSystem.Manager
         {
             if (courseGateway.UnAssignCourse() > 0)
             {
-                return "Unassign Courses Successfully!";
+                return "Unassign Courses Successfully";
             }
             return "Failed to unassign";
         }

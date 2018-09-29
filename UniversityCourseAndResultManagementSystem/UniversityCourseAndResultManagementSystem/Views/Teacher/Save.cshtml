@@ -34,7 +34,7 @@
         <div class="form-group alert-dark" style="width: 35%;">
             <label for="Email" class="font-weight-bold">Email</label>
             @*<input class="form-control" id="Email" name="Email" placeholder="Enter Email">*@
-            @Html.TextBoxFor(model=>model.Email,new{@class="form-control"})
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "Enter Email" })
             @Html.ValidationMessageFor(m => m.Email)
 
 
@@ -49,7 +49,7 @@
         <div class="form-group alert-dark" style="width: 35%;">
             <label for="DesignationId" class="font-weight-bold">Designation</label>
             <select id="DesignationId" name="DesignationId" class="form-control">
-                <option value="">Select Designation....</option>
+                <option value="">--Select Designation--</option>
                 @foreach (var designation in ViewBag.Designations)
                 {
                     <option value="@designation.Id">@designation.Title</option>
@@ -62,7 +62,7 @@
         <div class="form-group" style="width: 35%;">
             <label for="DepartmentId" class="font-weight-bold">Department</label>
             <select id="DepartmentId" name="DepartmentId" class="form-control">
-                <option value="">Select Department....</option>
+                <option value="">--Select Department--</option>
                 @foreach (var dept in ViewBag.Departments)
                 {
                     <option value="@dept.DepartmentId">@dept.Name</option>
@@ -74,7 +74,7 @@
         </div>
         <div class="form-group alert-dark" style="width: 35%;">
             <label for="CreditTobeTaken" class="font-weight-bold">Credit To be Taken</label>
-            <input class="form-control" id="CreditTobeTaken" name="CreditTobeTaken" placeholder="Enter CreditTobeTaken">
+            <input class="form-control" id="CreditTobeTaken" name="CreditTobeTaken" placeholder="Enter Credit To be Taken">
             @Html.ValidationMessageFor(m => m.CreditTobeTaken)
 
 

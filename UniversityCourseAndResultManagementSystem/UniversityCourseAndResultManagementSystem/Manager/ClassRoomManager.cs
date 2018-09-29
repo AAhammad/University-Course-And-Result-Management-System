@@ -91,7 +91,7 @@ namespace UniversityCourseAndResultManagementSystem.Manager
         {
             if (classRoomGateway.UnAllocateClassRoom() > 0)
             {
-                return "UnAllocated Successfully";
+                return "UnAllocated ClassRoom Successfully";
             }
             return "Failed to Unallocate";
         }
