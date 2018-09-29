@@ -4,7 +4,7 @@
     ViewBag.Title = "Show Course Statics";
 }
 <hr />
-<h2>View Course Statics</h2>
+<h2 style="font-size: 30px; color: #5f223b">View Course Statics</h2>
 <hr />
 <div class="form-group">
     <label for="DepartmentId" class="font-weight-bold shadow-sm btn-outline-primary">Select Department</label>
@@ -26,7 +26,8 @@
     <tbody id="myData"></tbody>
 </table>
 @section scripts{
-    <script src="~/Scripts/jquery-2.2.0.js"></script>
+    
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script>
         $(document).ready(function () {
             $("#DepartmentId").change(function () {
@@ -51,6 +52,7 @@
         });
     </script>
     <script src="~/Scripts/jquery-2.2.0.js"></script>
+
     <script src="~/Scripts/bootstrap.js"></script>
     <script>
         $('.dropdown').hover(function () {

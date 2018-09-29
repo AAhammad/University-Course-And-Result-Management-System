@@ -24,12 +24,12 @@ namespace UniversityCourseAndResultManagementSystem.Manager
 
                 if (classRoomGateway.InsertClassRoom(room) > 0)
                 {
-                    return "Saved Successfully!";
+                    return "Saved Successfully";
                 }
                 return "Failed to save";
 
             }
-            return "Overlapping not allowed";
+            return "Both full and partial overlapping must be avoided";
         }
 
         private bool IsTimeScheduleValid(int roomId, int dayId, DateTime startTime, DateTime endTime)

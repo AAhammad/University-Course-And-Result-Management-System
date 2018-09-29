@@ -71,8 +71,8 @@
                     EnrollDate: "required"
                 },
                 messages: {
-                    StudentId: "Please select student Registration No",
-                    CourseId: "Please select Course",
+                    StudentId: "Please select a student Registration No",
+                    CourseId: "Please select a Course",
                     EnrollDate: "Select date"
                 }
             });
@@ -80,6 +80,8 @@
             $("#StudentId").change(function () {
                 var stId = $("#StudentId").val();
                 $("#CourseId").empty();
+                $("#CourseId").append('<option value=' + "" + '>--Select Course--</option>');
+
                 var json = { studentId: stId };
 
                 $.ajax({
