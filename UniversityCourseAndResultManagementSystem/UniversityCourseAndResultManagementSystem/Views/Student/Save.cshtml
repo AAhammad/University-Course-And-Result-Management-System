@@ -56,8 +56,8 @@
             </div>
             <div class="form-group">
                 <label for="RegDate">Date</label>
-                @*<input type="text" class="form-control" id="RegDate" name="RegDate" value="@DateTime.Now.ToShortDateString()">*@
-                @Html.TextBoxFor(m => m.RegDate, new {@Value = @DateTime.Now.ToShortDateString(), @class = "form-control ",})
+                <input type="text" class="form-control" id="RegDate" name="RegDate" value="@DateTime.Now.ToShortDateString()">
+                @*@Html.TextBoxFor(m => m.RegDate, new {@Value = @DateTime.Now.ToShortDateString(), @class = "form-control ",})*@
                 @Html.ValidationMessageFor(m => m.RegDate)
             </div>
             <div class="form-group alert-dark" style="width: 35%;">
@@ -99,31 +99,31 @@
                 changeMonth: true,
                 changeYear: true
             });
-            //$("#saveStudentForm").validate({
-            //    rules: {
-            //        Name: "required",
-            //        //Email: {
-            //        //    required: true,
-            //        //    email: true
-            //        //},
-            //        Contact: "required",
-            //        RegDate: "required",
-            //        Address: "required",
-            //        DepartmentId: "required"
+            $("#saveStudentForm").validate({
+                rules: {
+                    Name: "required",
+                    //Email: {
+                    //    required: true,
+                    //    email: true
+                    //},
+                    Contact: "required",
+                    RegDate: "required",
+                    Address: "required",
+                    DepartmentId: "required"
 
-            //    },
-            //    messages: {
-            //        Name: "Please enter the student Name",
-            //        //Email: {
-            //        //    required: "Email address is required",
-            //        //    email: "Please enter a correct email address"
-            //        //},
-            //        Contact: "Please enter the student contact",
-            //        RegDate: "Select date",
-            //        Address: "Address is required!",
-            //        DepartmentId: "Please select department"
-            //    }
-            //});
+                },
+                messages: {
+                    Name: "Please enter the student Name",
+                    //Email: {
+                    //    required: "Email address is required",
+                    //    email: "Please enter a correct email address"
+                    //},
+                    Contact: "Please enter the student contact",
+                    RegDate: "Select date",
+                    Address: "Address is required!",
+                    DepartmentId: "Please select department"
+                }
+            });
 
 
         });
