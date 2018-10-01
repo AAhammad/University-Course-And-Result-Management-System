@@ -56,7 +56,7 @@
             </div>
             <div class="form-group">
                 <label for="RegDate">Date</label>
-                <input type="text" class="form-control" id="RegDate" name="RegDate" value="@DateTime.Now.ToShortDateString()">
+                <input type="text" class="form-control" id="RegDate" name="RegDate" value="@DateTime.Now">
                 @*@Html.TextBoxFor(m => m.RegDate, new {@Value = @DateTime.Now.ToShortDateString(), @class = "form-control ",})*@
                 @Html.ValidationMessageFor(m => m.RegDate)
             </div>
