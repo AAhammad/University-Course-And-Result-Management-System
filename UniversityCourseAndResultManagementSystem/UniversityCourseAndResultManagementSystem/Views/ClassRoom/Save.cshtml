@@ -76,7 +76,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.StartTime, new { @class = "custom-control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.StartTime, new { @class = "form-control", placeholder = "Select From Time" })
+                @Html.TextBoxFor(model => model.StartTime, new { @class = "form-control", placeholder = "Select From Time", @type="time" })
+                
                 @Html.ValidationMessageFor(model => model.StartTime )
                 <label id="lbltipAddedComment" style="color: red;" ></label>
             </div>
@@ -84,7 +85,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Endtime, new { @class = "custom-control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Endtime,new{ @class="form-control",placeholder="Select To Time"})
+                @Html.TextBoxFor(model => model.Endtime,new{ @class="form-control",placeholder="Select To Time", @type="time"})
                 @Html.ValidationMessageFor(model => model.Endtime)
                 <label id="lbltipAddedCommentEndTime" style="color: red;"></label>
 
@@ -181,8 +182,8 @@
     <script>
 
         $(document).ready(function() {
-            $("#StartTime").mobiscroll({ preset: 'time', 'theme': 'wp' });
-            $("#Endtime").mobiscroll({ preset: 'time', 'theme': 'wp' });
+            //$("#StartTime").mobiscroll({ preset: 'time', 'theme': 'wp' });
+            //$("#Endtime").mobiscroll({ preset: 'time', 'theme': 'wp' });
 
             $("#saveClassScedule").validate({
                 rules: {
